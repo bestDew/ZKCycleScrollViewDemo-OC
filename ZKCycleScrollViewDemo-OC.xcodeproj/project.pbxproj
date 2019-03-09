@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5DF553282CD89325981018B /* libPods-ZKCycleScrollViewDemo-OC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F020022347E41C541A8A345 /* libPods-ZKCycleScrollViewDemo-OC.a */; };
 		FDEA2B95223395AA00E0D5EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2B94223395AA00E0D5EB /* AppDelegate.m */; };
 		FDEA2B98223395AA00E0D5EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2B97223395AA00E0D5EB /* ViewController.m */; };
 		FDEA2B9B223395AA00E0D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B99223395AA00E0D5EB /* Main.storyboard */; };
 		FDEA2B9D223395AB00E0D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B9C223395AB00E0D5EB /* Assets.xcassets */; };
 		FDEA2BA0223395AB00E0D5EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B9E223395AB00E0D5EB /* LaunchScreen.storyboard */; };
 		FDEA2BA3223395AB00E0D5EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BA2223395AB00E0D5EB /* main.m */; };
+		FDEA2BAC2233966000E0D5EB /* ZKCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */; };
+		FDEA2BB22233B14D00E0D5EB /* LocalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BB12233B14D00E0D5EB /* LocalImageCell.m */; };
+		FDEA2BB52233B60300E0D5EB /* RemoteImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BB42233B60300E0D5EB /* RemoteImageCell.m */; };
+		FDEA2BB82233B6E200E0D5EB /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BB72233B6E200E0D5EB /* TextCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F020022347E41C541A8A345 /* libPods-ZKCycleScrollViewDemo-OC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKCycleScrollViewDemo-OC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0C49D4B35E329515D262A84 /* Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig"; sourceTree = "<group>"; };
+		CE119BB709AF0699519A0B65 /* Pods-ZKCycleScrollViewDemo-OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKCycleScrollViewDemo-OC.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC.release.xcconfig"; sourceTree = "<group>"; };
 		FDEA2B90223395AA00E0D5EB /* ZKCycleScrollViewDemo-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZKCycleScrollViewDemo-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEA2B93223395AA00E0D5EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDEA2B94223395AA00E0D5EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +34,14 @@
 		FDEA2B9F223395AB00E0D5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDEA2BA1223395AB00E0D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDEA2BA2223395AB00E0D5EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FDEA2BAA2233966000E0D5EB /* ZKCycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKCycleScrollView.h; sourceTree = "<group>"; };
+		FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKCycleScrollView.m; sourceTree = "<group>"; };
+		FDEA2BB02233B14D00E0D5EB /* LocalImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalImageCell.h; sourceTree = "<group>"; };
+		FDEA2BB12233B14D00E0D5EB /* LocalImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalImageCell.m; sourceTree = "<group>"; };
+		FDEA2BB32233B60300E0D5EB /* RemoteImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteImageCell.h; sourceTree = "<group>"; };
+		FDEA2BB42233B60300E0D5EB /* RemoteImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteImageCell.m; sourceTree = "<group>"; };
+		FDEA2BB62233B6E200E0D5EB /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
+		FDEA2BB72233B6E200E0D5EB /* TextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +49,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DF553282CD89325981018B /* libPods-ZKCycleScrollViewDemo-OC.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37A93ABBE931BA9FBD60D58B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F020022347E41C541A8A345 /* libPods-ZKCycleScrollViewDemo-OC.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4BA78A0BC34E75CDED4848A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0C49D4B35E329515D262A84 /* Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig */,
+				CE119BB709AF0699519A0B65 /* Pods-ZKCycleScrollViewDemo-OC.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		FDEA2B87223395AA00E0D5EB = {
 			isa = PBXGroup;
 			children = (
 				FDEA2B92223395AA00E0D5EB /* ZKCycleScrollViewDemo-OC */,
 				FDEA2B91223395AA00E0D5EB /* Products */,
+				E4BA78A0BC34E75CDED4848A /* Pods */,
+				37A93ABBE931BA9FBD60D58B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +98,13 @@
 				FDEA2B94223395AA00E0D5EB /* AppDelegate.m */,
 				FDEA2B96223395AA00E0D5EB /* ViewController.h */,
 				FDEA2B97223395AA00E0D5EB /* ViewController.m */,
+				FDEA2BB02233B14D00E0D5EB /* LocalImageCell.h */,
+				FDEA2BB12233B14D00E0D5EB /* LocalImageCell.m */,
+				FDEA2BB32233B60300E0D5EB /* RemoteImageCell.h */,
+				FDEA2BB42233B60300E0D5EB /* RemoteImageCell.m */,
+				FDEA2BB62233B6E200E0D5EB /* TextCell.h */,
+				FDEA2BB72233B6E200E0D5EB /* TextCell.m */,
+				FDEA2BA92233963500E0D5EB /* ZKCycleScrollView */,
 				FDEA2B99223395AA00E0D5EB /* Main.storyboard */,
 				FDEA2B9C223395AB00E0D5EB /* Assets.xcassets */,
 				FDEA2B9E223395AB00E0D5EB /* LaunchScreen.storyboard */,
@@ -71,6 +114,15 @@
 			path = "ZKCycleScrollViewDemo-OC";
 			sourceTree = "<group>";
 		};
+		FDEA2BA92233963500E0D5EB /* ZKCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				FDEA2BAA2233966000E0D5EB /* ZKCycleScrollView.h */,
+				FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */,
+			);
+			path = ZKCycleScrollView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,6 +130,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FDEA2BA6223395AB00E0D5EB /* Build configuration list for PBXNativeTarget "ZKCycleScrollViewDemo-OC" */;
 			buildPhases = (
+				1044BD3229813429CFBB7577 /* [CP] Check Pods Manifest.lock */,
 				FDEA2B8C223395AA00E0D5EB /* Sources */,
 				FDEA2B8D223395AA00E0D5EB /* Frameworks */,
 				FDEA2B8E223395AA00E0D5EB /* Resources */,
@@ -136,12 +189,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1044BD3229813429CFBB7577 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZKCycleScrollViewDemo-OC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FDEA2B8C223395AA00E0D5EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDEA2BB22233B14D00E0D5EB /* LocalImageCell.m in Sources */,
 				FDEA2B98223395AA00E0D5EB /* ViewController.m in Sources */,
+				FDEA2BB82233B6E200E0D5EB /* TextCell.m in Sources */,
+				FDEA2BAC2233966000E0D5EB /* ZKCycleScrollView.m in Sources */,
+				FDEA2BB52233B60300E0D5EB /* RemoteImageCell.m in Sources */,
 				FDEA2BA3223395AB00E0D5EB /* main.m in Sources */,
 				FDEA2B95223395AA00E0D5EB /* AppDelegate.m in Sources */,
 			);
@@ -283,6 +365,7 @@
 		};
 		FDEA2BA7223395AB00E0D5EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C49D4B35E329515D262A84 /* Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +382,7 @@
 		};
 		FDEA2BA8223395AB00E0D5EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE119BB709AF0699519A0B65 /* Pods-ZKCycleScrollViewDemo-OC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
