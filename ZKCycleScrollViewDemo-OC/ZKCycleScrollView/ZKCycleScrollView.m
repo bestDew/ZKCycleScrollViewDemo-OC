@@ -99,9 +99,9 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     _collectionView.dataSource = self;
     [self addSubview:_collectionView];
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self configuration];
-    }];
+    });
 }
 
 - (void)configuration
@@ -161,9 +161,9 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 - (void)reloadData
 {
     [_collectionView reloadData];
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self configuration];
-    }];
+    });
 }
 
 - (void)adjustWhenViewWillAppear
