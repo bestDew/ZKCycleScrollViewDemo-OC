@@ -33,8 +33,8 @@
     
     // 本地图片轮播
     _localPathGroup = [NSMutableArray arrayWithCapacity:6];
-    for (NSInteger i = 1; i < 7; i++) {
-        [_localPathGroup addObject:[@"ad_" stringByAppendingString:@(i).stringValue]];
+    for (NSInteger i = 1; i < 13; i++) {
+        [_localPathGroup addObject:@(i).stringValue];
     }
     
     _localBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 100.f, SCREEN_WIDTH, FIT_WIDTH(188.f))];
@@ -48,9 +48,9 @@
     
     
     // 网路图片轮播
-    _remotePathGroup = [NSMutableArray arrayWithObjects:@"http://chatm-icon.oss-cn-beijing.aliyuncs.com/pic/pic_20171101181927887.jpg", @"http://chatm-icon.oss-cn-beijing.aliyuncs.com/pic/pic_20171114171645011.jpg", @"http://chatm-icon.oss-cn-beijing.aliyuncs.com/pic/pic_20171114172009707.png", nil];
+    _remotePathGroup = [NSMutableArray arrayWithObjects:@"http://static1.pezy.cn/img/2019-02-01/5932241902444072231.jpg", @"http://static1.pezy.cn/img/2019-03-01/1206059142424414231.jpg", nil];
     
-    _remoteBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 350.f, SCREEN_WIDTH, FIT_WIDTH(80.f))];
+    _remoteBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 350.f, SCREEN_WIDTH, FIT_WIDTH(65.f))];
     _remoteBannerView.delegate = self;
     _remoteBannerView.dataSource = self;
     _remoteBannerView.autoScrollDuration = 5.f;

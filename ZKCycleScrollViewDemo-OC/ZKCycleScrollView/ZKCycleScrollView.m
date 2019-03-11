@@ -296,6 +296,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 {
     if ([_dataSource respondsToSelector:@selector(cycleScrollView:numberOfItemsInSection:)]) {
         _count = [_dataSource cycleScrollView:self numberOfItemsInSection:section];
+        if (_count < 2) _showsPageControl = NO;
     }
     return _count;
 }
