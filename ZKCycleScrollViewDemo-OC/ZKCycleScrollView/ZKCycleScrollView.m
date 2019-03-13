@@ -109,15 +109,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     [self addTimer];
     [self addPageControl];
     
-    UICollectionViewScrollPosition position;
-    switch (_scrollDirection) {
-        case ZKScrollDirectionHorizontal:
-            position = UICollectionViewScrollPositionLeft;
-            break;
-        case ZKScrollDirectionVertical:
-            position = UICollectionViewScrollPositionTop;
-            break;
-    }
+    UICollectionViewScrollPosition position = [self scrollPosition];
     NSInteger section = kNumberOfSections / 2;
     [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section] atScrollPosition:position animated:NO];
     _collectionView.scrollEnabled = (_count > 1 && _dragEnabled);
@@ -173,15 +165,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     NSIndexPath *indexPath = [self currentIndexPath];
     if (indexPath.section >= kNumberOfSections || indexPath.item >= _count) return;
     
-    UICollectionViewScrollPosition position;
-    switch (_scrollDirection) {
-        case ZKScrollDirectionHorizontal:
-            position = UICollectionViewScrollPositionLeft;
-            break;
-        case ZKScrollDirectionVertical:
-            position = UICollectionViewScrollPositionTop;
-            break;
-    }
+    UICollectionViewScrollPosition position = [self scrollPosition];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
 }
 
@@ -197,19 +181,10 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 - (void)automaticScroll
 {
     NSIndexPath *indexPath = [self currentIndexPath];
-    
-    UICollectionViewScrollPosition position;
-    switch (_scrollDirection) {
-        case ZKScrollDirectionHorizontal:
-            position = UICollectionViewScrollPositionLeft;
-            break;
-        case ZKScrollDirectionVertical:
-            position = UICollectionViewScrollPositionTop;
-            break;
-    }
-    
+    UICollectionViewScrollPosition position = [self scrollPosition];
     NSIndexPath *targetIndexPath;
     BOOL animated;
+    
     if (indexPath.section < kNumberOfSections - 1) {
         if (indexPath.item < _count - 1) {
             targetIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
@@ -227,6 +202,16 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
         }
     }
     [_collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:position animated:animated];
+}
+
+- (UICollectionViewScrollPosition)scrollPosition
+{
+    switch (_scrollDirection) {
+        case ZKScrollDirectionHorizontal:
+            return UICollectionViewScrollPositionLeft;
+        case ZKScrollDirectionVertical:
+            return UICollectionViewScrollPositionTop;
+    }
 }
 
 - (NSIndexPath *)currentIndexPath

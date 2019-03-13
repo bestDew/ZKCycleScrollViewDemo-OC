@@ -47,13 +47,13 @@
     [self.view addSubview:_localBannerView];
     
     
-    // 网路图片轮播
+    // 网络图片轮播
     _remotePathGroup = [NSMutableArray arrayWithObjects:@"http://static1.pezy.cn/img/2019-02-01/5932241902444072231.jpg", @"http://static1.pezy.cn/img/2019-03-01/1206059142424414231.jpg", nil];
     
     _remoteBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 350.f, SCREEN_WIDTH, FIT_WIDTH(65.f))];
     _remoteBannerView.delegate = self;
     _remoteBannerView.dataSource = self;
-    _remoteBannerView.autoScrollDuration = 5.f;
+    _remoteBannerView.autoScrollDuration = 4.f;
     _remoteBannerView.backgroundColor = [UIColor whiteColor];
     [_remoteBannerView registerCellClass:[RemoteImageCell class]];
     [self.view addSubview:_remoteBannerView];
