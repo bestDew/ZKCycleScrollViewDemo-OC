@@ -78,11 +78,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 {
     _autoScroll = YES;
     _dragEnabled = YES;
-    _showsPageControl = YES;
     _autoScrollDuration = 3.f;
-    _pageControlTransform = CGAffineTransformIdentity;
-    _pageIndicatorTintColor = [UIColor grayColor];
-    _currentPageIndicatorTintColor = [UIColor whiteColor];
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0.f;
@@ -99,6 +95,11 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     _collectionView.dataSource = self;
     [self addSubview:_collectionView];
     
+    _pageControl = [[UIPageControl alloc] init];
+    _pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    [self addSubview:_pageControl];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self configuration];
     });
@@ -107,7 +108,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 - (void)configuration
 {
     [self addTimer];
-    [self addPageControl];
+    [self updatePageControl];
     
     UICollectionViewScrollPosition position = [self scrollPosition];
     NSInteger section = kNumberOfSections / 2;
@@ -240,35 +241,15 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     _timer = nil;
 }
 
-- (void)addPageControl
-{
-    [_pageControl removeFromSuperview];
-    [_customPageControl removeFromSuperview];
-    
-    if (_customPageControl) {
-        _customPageControl.frame = [self pageControlFrame];
-        _customPageControl.hidden = !_showsPageControl;
-        _customPageControl.transform = _pageControlTransform;
-        [self addSubview:_customPageControl];
-    } else {
-        _pageControl = [[UIPageControl alloc] init];
-        _pageControl.frame = [self pageControlFrame];
-        _pageControl.numberOfPages = _count;
-        _pageControl.hidden = !_showsPageControl;
-        _pageControl.transform = _pageControlTransform;
-        _pageControl.pageIndicatorTintColor = _pageIndicatorTintColor;
-        _pageControl.currentPageIndicatorTintColor = _currentPageIndicatorTintColor;
-        [self addSubview:_pageControl];
-    }
-}
-
-- (CGRect)pageControlFrame
+- (void)updatePageControl
 {
     CGFloat height = 15.f;
     CGFloat width = _count * 15.f;
-    CGFloat x = (self.bounds.size.width - width) / 2;
-    CGFloat y = self.bounds.size.height - height;
-    return CGRectMake(x, y, width, height);
+    CGFloat x = (self.frame.size.width - width) / 2;
+    CGFloat y = self.frame.size.height - height;
+    _pageControl.frame = CGRectMake(x, y, width, height);
+    _pageControl.currentPage = 0;
+    _pageControl.numberOfPages = _count;
 }
 
 #pragma mark -- UICollectionView DataSource
@@ -281,7 +262,6 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 {
     if ([_dataSource respondsToSelector:@selector(cycleScrollView:numberOfItemsInSection:)]) {
         _count = [_dataSource cycleScrollView:self numberOfItemsInSection:section];
-        if (_count < 2) _showsPageControl = NO;
     }
     return _count;
 }
@@ -305,7 +285,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
         [_delegate cycleScrollViewDidScroll:self];
     }
     
-    if (_count <= 0) return;
+    if (_count < 1) return;
     NSIndexPath *indexPath = [self currentIndexPath];
     _pageControl.currentPage = indexPath.item;
 }
@@ -327,7 +307,7 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    if (_count <= 0) return;
+    if (_count < 1) return;
     if ([_delegate respondsToSelector:@selector(cycleScrollView:didScrollToIndexPath:)]) {
         [_delegate cycleScrollView:self didScrollToIndexPath:[self currentIndexPath]];
     }
@@ -359,35 +339,10 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     _collectionView.scrollEnabled = dragEnabled;
 }
 
-- (void)setShowsPageControl:(BOOL)showsPageControl
-{
-    _showsPageControl = showsPageControl;
-    _pageControl.hidden = !showsPageControl;
-    _customPageControl.hidden = !showsPageControl;
-}
-
 - (void)setAutoScrollDuration:(CGFloat)autoScrollDuration
 {
     _autoScrollDuration = autoScrollDuration;
     if (_autoScroll) [self addTimer];
-}
-
-- (void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor
-{
-    _pageIndicatorTintColor = pageIndicatorTintColor;
-    _pageControl.pageIndicatorTintColor = pageIndicatorTintColor;
-}
-
-- (void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor
-{
-    _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
-    _pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
-}
-
-- (void)setPageControlTransform:(CGAffineTransform)pageControlTransform
-{
-    _pageControlTransform = pageControlTransform;
-    _pageControl.transform = pageControlTransform;
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor

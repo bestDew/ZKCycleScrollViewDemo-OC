@@ -77,20 +77,17 @@ typedef NS_ENUM(NSInteger, ZKScrollDirection) {
 @property (nonatomic, assign) ZKScrollDirection scrollDirection; // default horizontal
 @property (nonatomic, assign, getter=isAutoScroll) BOOL autoScroll; // default YES
 @property (nonatomic, assign, getter=isDragEnabled) BOOL dragEnabled; // default YES
-@property (nonatomic, assign) BOOL showsPageControl; // default YES
 @property (nonatomic, assign) CGFloat autoScrollDuration; // default 3.f
 
 @property (nonatomic, readonly, assign) CGPoint contentOffset;
-
-@property (nonatomic, assign) CGAffineTransform pageControlTransform;
-@property (nullable, nonatomic, strong) UIColor *pageIndicatorTintColor;
-@property (nullable, nonatomic, strong) UIColor *currentPageIndicatorTintColor;
-@property (nullable, nonatomic, strong) UIView *customPageControl; // customize pageControl
+@property (nonatomic, readonly, strong) UIPageControl *pageControl;
 
 - (void)registerCellClass:(nullable Class)cellClass;
 - (void)registerCellNib:(nullable UINib *)nib;
 
 - (__kindof ZKCycleScrollViewCell *)dequeueReusableCellForIndexPath:(NSIndexPath *)indexPath;
+
+- (NSIndexPath *)currentIndexPath;
 
 - (void)reloadData;
 - (void)adjustWhenViewWillAppear;

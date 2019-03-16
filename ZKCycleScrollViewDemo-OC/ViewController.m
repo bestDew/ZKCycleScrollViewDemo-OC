@@ -32,7 +32,7 @@
     [super viewDidLoad];
     
     // 本地图片轮播
-    _localPathGroup = [NSMutableArray arrayWithCapacity:6];
+    _localPathGroup = [NSMutableArray arrayWithCapacity:12];
     for (NSInteger i = 1; i < 13; i++) {
         [_localPathGroup addObject:@(i).stringValue];
     }
@@ -41,8 +41,8 @@
     _localBannerView.delegate = self;
     _localBannerView.dataSource = self;
     _localBannerView.backgroundColor = [UIColor whiteColor];
-    _localBannerView.pageIndicatorTintColor = [UIColor blueColor];
-    _localBannerView.currentPageIndicatorTintColor = [UIColor redColor];
+    _localBannerView.pageControl.pageIndicatorTintColor = [UIColor blueColor];
+    _localBannerView.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
     [_localBannerView registerCellClass:[LocalImageCell class]];
     [self.view addSubview:_localBannerView];
     
@@ -66,7 +66,7 @@
     _textBannerView.delegate = self;
     _textBannerView.dataSource = self;
     _textBannerView.dragEnabled = NO;
-    _textBannerView.showsPageControl = NO;
+    _textBannerView.pageControl.hidden = YES;
     _textBannerView.scrollDirection = ZKScrollDirectionVertical;
     _textBannerView.backgroundColor = [UIColor whiteColor];
     [_textBannerView registerCellClass:[TextCell class]];
