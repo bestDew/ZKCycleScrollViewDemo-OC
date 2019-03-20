@@ -42,16 +42,14 @@
 
 #import "ZKCycleScrollView.h"
 
-static const NSInteger kNumberOfSections = 100;
-static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
-
 @interface ZKCycleScrollView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, assign) NSInteger numberOfItems;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSTimer *timer;
-@property (nonatomic, assign) NSInteger count;
+@property (nonatomic, assign) NSInteger fromIndex;
 
 @end
 
@@ -77,22 +75,22 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 - (void)initialization
 {
     _autoScroll = YES;
-    _dragEnabled = YES;
-    _autoScrollDuration = 3.f;
+    _scrollEnabled = YES;
+    _autoScrollInterval = 3.f;
     
     _flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0.f;
+    _flowLayout.minimumInteritemSpacing = 0.f;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    _flowLayout.headerReferenceSize = CGSizeZero;
-    _flowLayout.footerReferenceSize = CGSizeZero;
     
-    _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:_flowLayout];
-    _collectionView.pagingEnabled = YES;
-    _collectionView.scrollsToTop = NO;
-    _collectionView.showsHorizontalScrollIndicator = NO;
-    _collectionView.showsVerticalScrollIndicator = NO;
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    _collectionView.bounces = NO;
+    _collectionView.scrollsToTop = NO;
+    _collectionView.pagingEnabled = YES;
+    _collectionView.showsHorizontalScrollIndicator = NO;
+    _collectionView.showsVerticalScrollIndicator = NO;
     [self addSubview:_collectionView];
     
     _pageControl = [[UIPageControl alloc] init];
@@ -105,23 +103,13 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     });
 }
 
-- (void)configuration
-{
-    [self addTimer];
-    [self updatePageControl];
-    
-    UICollectionViewScrollPosition position = [self scrollPosition];
-    NSInteger section = kNumberOfSections / 2;
-    [_collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:section] atScrollPosition:position animated:NO];
-    _collectionView.scrollEnabled = (_count > 1 && _dragEnabled);
-}
-
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
     _flowLayout.itemSize = self.bounds.size;
     _collectionView.frame = self.bounds;
+    _pageControl.frame = CGRectMake(0.f, self.bounds.size.height - 15.f, self.bounds.size.width, 15.f);
 }
 
 - (void)willMoveToSuperview:(UIView *)newSuperview
@@ -136,168 +124,176 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 }
 
 #pragma mark -- Public Methods
-- (void)registerCellClass:(nullable Class)cellClass
+- (void)registerCellClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier
 {
-    [_collectionView registerClass:cellClass forCellWithReuseIdentifier:kCellReuseId];
+    [_collectionView registerClass:cellClass forCellWithReuseIdentifier:identifier];
 }
 
-- (void)registerCellNib:(UINib *)nib
+- (void)registerCellNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier
 {
-    [_collectionView registerNib:nib forCellWithReuseIdentifier:kCellReuseId];
+    [_collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
 }
 
-- (__kindof ZKCycleScrollViewCell *)dequeueReusableCellForIndexPath:(NSIndexPath *)indexPath
+- (__kindof ZKCycleScrollViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndex:(NSInteger)index
 {
-    return [_collectionView dequeueReusableCellWithReuseIdentifier:kCellReuseId forIndexPath:indexPath];
+    index = [self changeIndex:index];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    return [_collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 }
 
 - (void)reloadData
 {
-    [_collectionView reloadData];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self configuration];
-    });
+    [self removeTimer];
+    [UIView performWithoutAnimation:^{
+        [_collectionView performBatchUpdates:^{
+            [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
+        } completion:^(BOOL finished) {
+            [self configuration];
+        }];
+    }];
 }
 
 - (void)adjustWhenViewWillAppear
 {
-    if (_count <= 0) return;
+    if (_numberOfItems < 2) return;
     
-    NSIndexPath *indexPath = [self currentIndexPath];
-    if (indexPath.section >= kNumberOfSections || indexPath.item >= _count) return;
-    
+    NSInteger index = [self currentIndex];
     UICollectionViewScrollPosition position = [self scrollPosition];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+    
+    if (index == 0) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 2 inSection:0];
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+    } else if (index == _numberOfItems - 1) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+    }
 }
 
 #pragma mark -- Private Methods
+- (UICollectionViewScrollPosition)scrollPosition
+{
+    switch (_scrollDirection) {
+        case ZKScrollDirectionVertical:
+            return UICollectionViewScrollPositionCenteredVertically;
+        default:
+            return UICollectionViewScrollPositionCenteredHorizontally;
+    }
+}
+
+- (NSInteger)changeIndex:(NSInteger)index
+{
+    if (_numberOfItems > 1) {
+        if (index == 0) {
+            index = _numberOfItems - 3;
+        } else if (index == _numberOfItems - 1) {
+            index = 0;
+        } else {
+            index -= 1;
+        }
+    }
+    return index;
+}
+
+- (void)configuration
+{
+    [self addTimer];
+    [self updatePageControl];
+    if (_numberOfItems < 2) return;
+    
+    UICollectionViewScrollPosition position = [self scrollPosition];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+    [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+}
+
 - (void)addTimer
 {
     [self removeTimer];
-    if (_count < 2 || !_autoScroll) return;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:_autoScrollDuration target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
+    
+    if (_numberOfItems < 2 || !_autoScroll || _autoScrollInterval <= 0.f) return;
+    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:_autoScrollInterval target:self selector:@selector(automaticScroll) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)automaticScroll
 {
-    NSIndexPath *indexPath = [self currentIndexPath];
+    NSInteger index = [self currentIndex] + 1;
     UICollectionViewScrollPosition position = [self scrollPosition];
-    NSIndexPath *targetIndexPath;
-    BOOL animated;
-    
-    if (indexPath.section < kNumberOfSections - 1) {
-        if (indexPath.item < _count - 1) {
-            targetIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
-        } else {
-            targetIndexPath = [NSIndexPath indexPathForItem:0 inSection:indexPath.section + 1];
-        }
-        animated = YES;
-    } else {
-        if (indexPath.item < _count - 1) {
-            targetIndexPath = [NSIndexPath indexPathForItem:indexPath.item + 1 inSection:indexPath.section];
-            animated = YES;
-        } else {
-            targetIndexPath = [NSIndexPath indexPathForItem:0 inSection:kNumberOfSections / 2];
-            animated = NO;
-        }
-    }
-    [_collectionView scrollToItemAtIndexPath:targetIndexPath atScrollPosition:position animated:animated];
-}
-
-- (UICollectionViewScrollPosition)scrollPosition
-{
-    switch (_scrollDirection) {
-        case ZKScrollDirectionHorizontal:
-            return UICollectionViewScrollPositionLeft;
-        case ZKScrollDirectionVertical:
-            return UICollectionViewScrollPositionTop;
-    }
-}
-
-- (NSIndexPath *)currentIndexPath
-{
-    if (self.bounds.size.width <= 0.f || self.bounds.size.height <= 0.f) {
-        return [NSIndexPath indexPathForItem:0 inSection:0];
-    }
-    NSInteger index = 0;
-    switch (_scrollDirection) {
-        case ZKScrollDirectionHorizontal:
-            index = (_collectionView.contentOffset.x + _flowLayout.itemSize.width / 2) / _flowLayout.itemSize.width;
-            break;
-        case ZKScrollDirectionVertical:
-            index = (_collectionView.contentOffset.y + _flowLayout.itemSize.height / 2) / _flowLayout.itemSize.height;
-            break;
-    }
-    index = MAX(0, index);
-    NSInteger section = index / _count;
-    NSInteger item = index % _count;
-    return [NSIndexPath indexPathForItem:item inSection:section];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:YES];
 }
 
 - (void)removeTimer
 {
+    if (_timer == nil) return;
     [_timer invalidate];
     _timer = nil;
 }
 
 - (void)updatePageControl
 {
-    CGFloat height = 15.f;
-    CGFloat width = _count * 15.f;
-    CGFloat x = (self.frame.size.width - width) / 2;
-    CGFloat y = self.frame.size.height - height;
-    _pageControl.frame = CGRectMake(x, y, width, height);
     _pageControl.currentPage = 0;
-    _pageControl.numberOfPages = _count;
+    _pageControl.numberOfPages = MAX(0, _numberOfItems - 2);
 }
 
 #pragma mark -- UICollectionView DataSource
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return kNumberOfSections;
-}
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if ([_dataSource respondsToSelector:@selector(cycleScrollView:numberOfItemsInSection:)]) {
-        _count = [_dataSource cycleScrollView:self numberOfItemsInSection:section];
+    if ([_dataSource respondsToSelector:@selector(numberOfItemsInCycleScrollView:)]) {
+        _numberOfItems = [_dataSource numberOfItemsInCycleScrollView:self];
+        if (_numberOfItems > 1) _numberOfItems += 2;
     }
-    return _count;
+    return _numberOfItems;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [_dataSource cycleScrollView:self cellForItemAtIndexPath:indexPath];
+    NSInteger index = [self changeIndex:indexPath.item];
+    return [_dataSource cycleScrollView:self cellForItemAtIndex:index];
 }
 
 #pragma mark -- UICollectionView Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([_delegate respondsToSelector:@selector(cycleScrollView:didSelectItemAtIndexPath:)]) {
-        [_delegate cycleScrollView:self didSelectItemAtIndexPath:indexPath];
+    if ([_delegate respondsToSelector:@selector(cycleScrollView:didSelectItemAtIndex:)]) {
+        NSInteger index = [self changeIndex:indexPath.item];
+        [_delegate cycleScrollView:self didSelectItemAtIndex:index];
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if ([_delegate respondsToSelector:@selector(cycleScrollViewDidScroll:)]) {
-        [_delegate cycleScrollViewDidScroll:self];
-    }
+    _pageControl.currentPage = [self pageIndex];
     
-    if (_count < 1) return;
-    NSIndexPath *indexPath = [self currentIndexPath];
-    _pageControl.currentPage = indexPath.item;
+    CGFloat total = 0.f, offset = 0.f;
+    switch (_scrollDirection) {
+        case ZKScrollDirectionVertical:
+            total = (_numberOfItems - 3) * self.bounds.size.height;
+            offset = fmod([self contentOffset].y, self.bounds.size.height * (_numberOfItems - 2));
+            break;
+        default:
+            total = (_numberOfItems - 3) * self.bounds.size.width;
+            offset = fmod([self contentOffset].x, self.bounds.size.width * (_numberOfItems - 2));
+            break;
+    }
+    CGFloat percent = offset / total;
+    CGFloat progress = percent * (_numberOfItems - 3);
+    
+    if ([_delegate respondsToSelector:@selector(cycleScrollViewDidScroll:progress:)]) {
+        [_delegate cycleScrollViewDidScroll:self progress:progress];
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    if (_autoScroll) [self removeTimer];
+    [self removeTimer];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (_autoScroll) [self addTimer];
+    [self addTimer];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -307,42 +303,57 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    if (_count < 1) return;
-    if ([_delegate respondsToSelector:@selector(cycleScrollView:didScrollToIndexPath:)]) {
-        [_delegate cycleScrollView:self didScrollToIndexPath:[self currentIndexPath]];
+    NSInteger index = [self currentIndex];
+    if (index == 0) {
+        UICollectionViewScrollPosition position = [self scrollPosition];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 2 inSection:0];
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+    } else if (index == _numberOfItems - 1) {
+        UICollectionViewScrollPosition position = [self scrollPosition];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
     }
+    NSInteger toIndex = [self changeIndex:index];
+    if ([_delegate respondsToSelector:@selector(cycleScrollView:didScrollFromIndex:toIndex:)]) {
+        [_delegate cycleScrollView:self didScrollFromIndex:_fromIndex toIndex:toIndex];
+    }
+    _fromIndex = toIndex;
 }
 
-#pragma mark -- Setter & Getter
-- (void)setScrollDirection:(ZKScrollDirection)scrollDirection
+#pragma mark -- Getter & Setter
+- (NSInteger)currentIndex
 {
-    _scrollDirection = scrollDirection;
-    switch (scrollDirection) {
-        case ZKScrollDirectionHorizontal:
-            _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-            break;
+    if (_numberOfItems <= 0 ||
+        self.bounds.size.width <= 0.f ||
+        self.bounds.size.height <= 0.f) {
+        return 0;
+    }
+    
+    NSInteger index = 0;
+    switch (_scrollDirection) {
         case ZKScrollDirectionVertical:
-            _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+            index = (_collectionView.contentOffset.y + _flowLayout.itemSize.height / 2) / _flowLayout.itemSize.height;
+            break;
+        default:
+            index = (_collectionView.contentOffset.x + _flowLayout.itemSize.width / 2) / _flowLayout.itemSize.width;
             break;
     }
+    return MAX(0, index);
 }
 
-- (void)setAutoScroll:(BOOL)autoScroll
+- (NSInteger)pageIndex
 {
-    _autoScroll = autoScroll;
-    autoScroll ? [self addTimer] : [self removeTimer];
+    return [self changeIndex:[self currentIndex]];
 }
 
-- (void)setDragEnabled:(BOOL)dragEnabled
+- (CGPoint)contentOffset
 {
-    _dragEnabled = dragEnabled;
-    _collectionView.scrollEnabled = dragEnabled;
-}
-
-- (void)setAutoScrollDuration:(CGFloat)autoScrollDuration
-{
-    _autoScrollDuration = autoScrollDuration;
-    if (_autoScroll) [self addTimer];
+    switch (_scrollDirection) {
+        case ZKScrollDirectionVertical:
+            return CGPointMake(0.f, MAX(0.f, _collectionView.contentOffset.y - _collectionView.bounds.size.height));
+        default:
+            return CGPointMake(MAX(0.f, (_collectionView.contentOffset.x - _collectionView.bounds.size.width)), 0.f);
+    }
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
@@ -351,9 +362,36 @@ static NSString * const kCellReuseId = @"ZKCycleScrollViewCell";
     _collectionView.backgroundColor = backgroundColor;
 }
 
-- (CGPoint)contentOffset
+- (void)setScrollDirection:(ZKScrollDirection)scrollDirection
 {
-    return _collectionView.contentOffset;
+    _scrollDirection = scrollDirection;
+    
+    switch (scrollDirection) {
+        case ZKScrollDirectionVertical:
+            _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+            break;
+        default:
+            _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            break;
+    }
+}
+
+- (void)setAutoScroll:(BOOL)autoScroll
+{
+    _autoScroll = autoScroll;
+    [self addTimer];
+}
+
+- (void)setScrollEnabled:(BOOL)scrollEnabled
+{
+    _scrollEnabled = scrollEnabled;
+    _collectionView.scrollEnabled = scrollEnabled;
+}
+
+- (void)setAutoScrollInterval:(CGFloat)autoScrollInterval
+{
+    _autoScrollInterval = autoScrollInterval;
+    [self addTimer];
 }
 
 @end

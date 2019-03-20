@@ -42,30 +42,35 @@
 
 #import <UIKit/UIKit.h>
 
-@class ZKCycleScrollView;
-
 NS_ASSUME_NONNULL_BEGIN
+
+@class ZKCycleScrollView;
 
 @compatibility_alias ZKCycleScrollViewCell UICollectionViewCell;
 
 typedef NS_ENUM(NSInteger, ZKScrollDirection) {
-    ZKScrollDirectionHorizontal  = 0,
+    ZKScrollDirectionHorizontal = 0,
     ZKScrollDirectionVertical
 };
 
 @protocol ZKCycleScrollViewDataSource <NSObject>
 
-- (NSInteger)cycleScrollView:(ZKCycleScrollView *)cycleScrollView numberOfItemsInSection:(NSInteger)section;
-- (__kindof ZKCycleScrollViewCell *)cycleScrollView:(ZKCycleScrollView *)cycleScrollView cellForItemAtIndexPath:(NSIndexPath *)indexPath;
+// Return number of pages
+- (NSInteger)numberOfItemsInCycleScrollView:(ZKCycleScrollView *)cycleScrollView;
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndex:
+- (__kindof ZKCycleScrollViewCell *)cycleScrollView:(ZKCycleScrollView *)cycleScrollView cellForItemAtIndex:(NSInteger)index;
 
 @end
 
 @protocol ZKCycleScrollViewDelegate <NSObject>
 
 @optional
-- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
-- (void)cycleScrollViewDidScroll:(ZKCycleScrollView *)cycleScrollView;
-- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didScrollToIndexPath:(NSIndexPath *)indexPath;
+// Called when the cell is clicked
+- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index;
+// Called when the offset changes. The progress range is from 0 to the maximum index value, which means the progress value for a round of scrolling
+- (void)cycleScrollViewDidScroll:(ZKCycleScrollView *)cycleScrollView progress:(CGFloat)progress;
+// Called when scrolling to a new index page
+- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex;
 
 @end
 
@@ -74,22 +79,23 @@ typedef NS_ENUM(NSInteger, ZKScrollDirection) {
 @property (nullable, nonatomic, weak) id<ZKCycleScrollViewDelegate> delegate;
 @property (nullable, nonatomic, weak) id<ZKCycleScrollViewDataSource> dataSource;
 
-@property (nonatomic, assign) ZKScrollDirection scrollDirection; // default horizontal
-@property (nonatomic, assign, getter=isAutoScroll) BOOL autoScroll; // default YES
-@property (nonatomic, assign, getter=isDragEnabled) BOOL dragEnabled; // default YES
-@property (nonatomic, assign) CGFloat autoScrollDuration; // default 3.f
+@property (nonatomic, assign) ZKScrollDirection scrollDirection; // default horizontal. scroll direction
 
-@property (nonatomic, readonly, assign) CGPoint contentOffset;
+@property (nonatomic, assign, getter=isAutoScroll) BOOL autoScroll; // default YES
+@property (nonatomic, assign, getter=isScrollEnabled) BOOL scrollEnabled; // default YES. turn off any dragging temporarily
+@property (nonatomic, assign) CGFloat autoScrollInterval; // default 3.f. automatic scroll time interval
+
+@property (nonatomic, readonly, assign) NSInteger pageIndex; // current page index
+@property (nonatomic, readonly, assign) CGPoint contentOffset;  // current content offset
 @property (nonatomic, readonly, strong) UIPageControl *pageControl;
 
-- (void)registerCellClass:(nullable Class)cellClass;
-- (void)registerCellNib:(nullable UINib *)nib;
+- (void)registerCellClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
+- (void)registerCellNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier;
 
-- (__kindof ZKCycleScrollViewCell *)dequeueReusableCellForIndexPath:(NSIndexPath *)indexPath;
-
-- (NSIndexPath *)currentIndexPath;
+- (__kindof ZKCycleScrollViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
 
 - (void)reloadData;
+// If the cell gets stuck in half the time when you push or present a new view controller, you can call this method in the -viewWillAppear: method of the view controller where the cyclescrollView is located.
 - (void)adjustWhenViewWillAppear;
 
 @end
