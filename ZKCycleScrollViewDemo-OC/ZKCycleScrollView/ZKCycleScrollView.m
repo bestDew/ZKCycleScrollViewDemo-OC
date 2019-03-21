@@ -65,11 +65,13 @@
     return self;
 }
 
-- (void)awakeFromNib
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
-    [super awakeFromNib];
-    
-    [self initialization];
+    if (self = [super initWithCoder:aDecoder]) {
+        
+        [self initialization];
+    }
+    return self;
 }
 
 - (void)initialization
@@ -84,6 +86,7 @@
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_flowLayout];
+    _collectionView.backgroundColor = nil;
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.bounces = NO;
@@ -354,12 +357,6 @@
         default:
             return CGPointMake(MAX(0.f, (_collectionView.contentOffset.x - _collectionView.bounds.size.width)), 0.f);
     }
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    [super setBackgroundColor:backgroundColor];
-    _collectionView.backgroundColor = backgroundColor;
 }
 
 - (void)setScrollDirection:(ZKScrollDirection)scrollDirection

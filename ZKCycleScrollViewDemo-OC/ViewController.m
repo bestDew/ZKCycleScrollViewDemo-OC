@@ -24,9 +24,9 @@ static NSString *kTextCellId = @"TextCell";
 @property (nonatomic, strong) NSMutableArray *localPathGroup;
 @property (nonatomic, strong) NSMutableArray *remotePathGroup;
 @property (nonatomic, strong) NSMutableArray *textPathGroup;
-@property (nonatomic, strong) ZKCycleScrollView *localBannerView;
-@property (nonatomic, strong) ZKCycleScrollView *remoteBannerView;
-@property (nonatomic, strong) ZKCycleScrollView *textBannerView;
+@property (weak, nonatomic) IBOutlet ZKCycleScrollView *localBannerView;
+@property (weak, nonatomic) IBOutlet ZKCycleScrollView *remoteBannerView;
+@property (weak, nonatomic) IBOutlet ZKCycleScrollView *textBannerView;
 
 @end
 
@@ -36,58 +36,34 @@ static NSString *kTextCellId = @"TextCell";
     [super viewDidLoad];
     
     // 本地图片轮播
-    [self addLocalBannerView];
+    [self setupLocalBannerView];
     
     // 网络图片轮播
-    [self addRemoteBannerView];
+    [self setupRemoteBannerView];
     
     // 纯文字轮播
-    [self addTextBannerView];
+    [self setupTextBannerView];
 }
 
-- (void)addLocalBannerView
+- (void)setupLocalBannerView
 {
     _localPathGroup = [NSMutableArray arrayWithCapacity:12];
     for (NSInteger i = 1; i < 13; i++) {
         [_localPathGroup addObject:@(i).stringValue];
     }
-    
-    _localBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 100.f, SCREEN_WIDTH, FIT_WIDTH(200.f))];
-    _localBannerView.delegate = self;
-    _localBannerView.dataSource = self;
-    _localBannerView.backgroundColor = [UIColor whiteColor];
-    _localBannerView.pageControl.pageIndicatorTintColor = [UIColor blueColor];
-    _localBannerView.pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-    [_localBannerView registerCellClass:[LocalImageCell class] forCellWithReuseIdentifier:kLocalCellId];
-    [self.view addSubview:_localBannerView];
+    [_localBannerView registerCellNib:[UINib nibWithNibName:@"LocalImageCell" bundle:nil] forCellWithReuseIdentifier:kLocalCellId];
 }
 
-- (void)addRemoteBannerView
+- (void)setupRemoteBannerView
 {
     _remotePathGroup = [NSMutableArray arrayWithObjects:@"http://static1.pezy.cn/img/2019-02-01/5932241902444072231.jpg", @"http://static1.pezy.cn/img/2019-03-01/1206059142424414231.jpg", nil];
-    
-    _remoteBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 350.f, SCREEN_WIDTH, FIT_WIDTH(65.f))];
-    _remoteBannerView.delegate = self;
-    _remoteBannerView.dataSource = self;
-    _remoteBannerView.autoScrollInterval = 4.f;
-    _remoteBannerView.backgroundColor = [UIColor whiteColor];
     [_remoteBannerView registerCellClass:[RemoteImageCell class] forCellWithReuseIdentifier:kRemoteCellId];
-    [self.view addSubview:_remoteBannerView];
 }
 
-- (void)addTextBannerView
+- (void)setupTextBannerView
 {
     _textPathGroup = [NSMutableArray arrayWithObjects:@"~如果有一天~", @"~我回到从前~", @"~我会带着笑脸~", @"~和你说再见~", nil];
-    
-    _textBannerView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 480.f, SCREEN_WIDTH, 30.f)];
-    _textBannerView.delegate = self;
-    _textBannerView.dataSource = self;
-    _textBannerView.scrollEnabled = NO;
-    _textBannerView.pageControl.hidden = YES;
-    _textBannerView.scrollDirection = ZKScrollDirectionVertical;
-    _textBannerView.backgroundColor = [UIColor whiteColor];
-    [_textBannerView registerCellClass:[TextCell class] forCellWithReuseIdentifier:kTextCellId];
-    [self.view addSubview:_textBannerView];
+    [_textBannerView registerCellNib:[UINib nibWithNibName:@"TextCell" bundle:nil] forCellWithReuseIdentifier:kTextCellId];
 }
 
 - (void)viewWillAppear:(BOOL)animated

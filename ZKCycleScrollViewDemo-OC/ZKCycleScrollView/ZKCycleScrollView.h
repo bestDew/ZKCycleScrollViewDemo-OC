@@ -76,14 +76,19 @@ typedef NS_ENUM(NSInteger, ZKScrollDirection) {
 
 @interface ZKCycleScrollView : UIView
 
-@property (nullable, nonatomic, weak) id<ZKCycleScrollViewDelegate> delegate;
-@property (nullable, nonatomic, weak) id<ZKCycleScrollViewDataSource> dataSource;
+@property (nullable, nonatomic, weak) IBOutlet id<ZKCycleScrollViewDelegate> delegate;
+@property (nullable, nonatomic, weak) IBOutlet id<ZKCycleScrollViewDataSource> dataSource;
 
+#if TARGET_INTERFACE_BUILDER
+@property (nonatomic, assign) IBInspectable NSInteger scrollDirection;
+@property (nonatomic, assign) IBInspectable double autoScrollInterval; 
+#else
 @property (nonatomic, assign) ZKScrollDirection scrollDirection; // default horizontal. scroll direction
+@property (nonatomic, assign) NSTimeInterval autoScrollInterval; // default 3.f. automatic scroll time interval
+#endif
 
-@property (nonatomic, assign, getter=isAutoScroll) BOOL autoScroll; // default YES
-@property (nonatomic, assign, getter=isScrollEnabled) BOOL scrollEnabled; // default YES. turn off any dragging temporarily
-@property (nonatomic, assign) CGFloat autoScrollInterval; // default 3.f. automatic scroll time interval
+@property (nonatomic, assign, getter=isAutoScroll) IBInspectable BOOL autoScroll; // default YES
+@property (nonatomic, assign, getter=isScrollEnabled) IBInspectable BOOL scrollEnabled; // default YES. turn off any dragging temporarily
 
 @property (nonatomic, readonly, assign) NSInteger pageIndex; // current page index
 @property (nonatomic, readonly, assign) CGPoint contentOffset;  // current content offset

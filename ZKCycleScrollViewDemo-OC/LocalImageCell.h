@@ -2,7 +2,7 @@
 //  LocalImageCell.h
 //  ZKCycleScrollViewDemo-OC
 //
-//  Created by bestdew on 2019/3/9.
+//  Created by bestdew on 2019/3/21.
 //  Copyright © 2019 bestdew. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LocalImageCell : UICollectionViewCell
 
-@property (nonatomic, readonly, strong) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 

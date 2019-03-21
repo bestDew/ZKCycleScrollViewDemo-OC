@@ -2,7 +2,7 @@
 //  TextCell.h
 //  ZKCycleScrollViewDemo-OC
 //
-//  Created by bestdew on 2019/3/9.
+//  Created by bestdew on 2019/3/21.
 //  Copyright © 2019 bestdew. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TextCell : UICollectionViewCell
 
-@property (nonatomic, readonly, strong) UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end
 
