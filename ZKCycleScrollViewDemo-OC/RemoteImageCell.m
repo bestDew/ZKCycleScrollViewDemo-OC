@@ -7,7 +7,7 @@
 //
 
 #import "RemoteImageCell.h"
-#import <YYWebImage.h>
+#import <YYWebImage/YYWebImage.h>
 
 @interface RemoteImageCell ()
 
@@ -38,7 +38,6 @@
 - (void)setImageURL:(NSURL *)imageURL
 {
     _imageURL = imageURL;
-    
     [_imageView yy_setImageWithURL:imageURL options:YYWebImageOptionSetImageWithFadeAnimation];
 }
 

@@ -41,15 +41,17 @@
 //                   $               $
 
 #import "ZKCycleScrollView.h"
+#import "ZKCycleScrollViewFlowLayout.h"
 
 @interface ZKCycleScrollView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic, strong) ZKCycleScrollViewFlowLayout *flowLayout;
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, assign) NSInteger numberOfItems;
 @property (nonatomic, strong) UIPageControl *pageControl;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger fromIndex;
+@property (nonatomic, assign) NSInteger numberOfItems;
+@property (nonatomic, assign) BOOL itemSizeFlag;
 
 @end
 
@@ -77,12 +79,16 @@
 - (void)initialization
 {
     _autoScroll = YES;
-    _scrollEnabled = YES;
+    _allowsDragging = YES;
     _autoScrollInterval = 3.f;
+    _pageIndicatorTintColor = [UIColor grayColor];
+    _currentPageIndicatorTintColor = [UIColor whiteColor];
     
-    _flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    _flowLayout = [[ZKCycleScrollViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0.f;
     _flowLayout.minimumInteritemSpacing = 0.f;
+    _flowLayout.headerReferenceSize = CGSizeZero;
+    _flowLayout.footerReferenceSize = CGSizeZero;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_flowLayout];
@@ -97,20 +103,19 @@
     [self addSubview:_collectionView];
     
     _pageControl = [[UIPageControl alloc] init];
-    _pageControl.pageIndicatorTintColor = [UIColor grayColor];
-    _pageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
+    _pageControl.hidesForSinglePage = YES;
+    _pageControl.pageIndicatorTintColor = _pageIndicatorTintColor;
+    _pageControl.currentPageIndicatorTintColor = _currentPageIndicatorTintColor;
     [self addSubview:_pageControl];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self configuration];
-    });
+    dispatch_async(dispatch_get_main_queue(), ^{ [self configuration]; });
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    _flowLayout.itemSize = self.bounds.size;
+    _flowLayout.itemSize = _itemSizeFlag ? _itemSize : self.bounds.size;
     _collectionView.frame = self.bounds;
     _pageControl.frame = CGRectMake(0.f, self.bounds.size.height - 15.f, self.bounds.size.width, 15.f);
 }
@@ -165,11 +170,11 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
     
-    if (index == 0) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 2 inSection:0];
+    if (index == 1) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 3 inSection:0];
         [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
-    } else if (index == _numberOfItems - 1) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+    } else if (index == _numberOfItems - 2) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
         [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
     }
 }
@@ -189,11 +194,15 @@
 {
     if (_numberOfItems > 1) {
         if (index == 0) {
-            index = _numberOfItems - 3;
-        } else if (index == _numberOfItems - 1) {
+            index = _numberOfItems - 6;
+        } else if (index == 1) {
+            index = _numberOfItems - 5;
+        } else if (index == _numberOfItems - 2) {
             index = 0;
+        } else if (index == _numberOfItems - 1) {
+            index = 1;
         } else {
-            index -= 1;
+            index -= 2;
         }
     }
     return index;
@@ -206,7 +215,7 @@
     if (_numberOfItems < 2) return;
     
     UICollectionViewScrollPosition position = [self scrollPosition];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
 }
 
@@ -238,7 +247,8 @@
 - (void)updatePageControl
 {
     _pageControl.currentPage = 0;
-    _pageControl.numberOfPages = MAX(0, _numberOfItems - 2);
+    _pageControl.numberOfPages = MAX(0, _numberOfItems - 4);
+    _pageControl.hidden = (_hidesPageControl || _pageControl.numberOfPages < 2);
 }
 
 #pragma mark -- UICollectionView DataSource
@@ -246,7 +256,7 @@
 {
     if ([_dataSource respondsToSelector:@selector(numberOfItemsInCycleScrollView:)]) {
         _numberOfItems = [_dataSource numberOfItemsInCycleScrollView:self];
-        if (_numberOfItems > 1) _numberOfItems += 2;
+        if (_numberOfItems > 1) _numberOfItems += 4;
     }
     return _numberOfItems;
 }
@@ -273,16 +283,16 @@
     CGFloat total = 0.f, offset = 0.f;
     switch (_scrollDirection) {
         case ZKScrollDirectionVertical:
-            total = (_numberOfItems - 3) * self.bounds.size.height;
-            offset = fmod([self contentOffset].y, self.bounds.size.height * (_numberOfItems - 2));
+            total = (_numberOfItems - 5) * (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing);
+            offset = fmod([self contentOffset].y, (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing) * (_numberOfItems - 4));
             break;
         default:
-            total = (_numberOfItems - 3) * self.bounds.size.width;
-            offset = fmod([self contentOffset].x, self.bounds.size.width * (_numberOfItems - 2));
+            total = (_numberOfItems - 5) * (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing);
+            offset = fmod([self contentOffset].x, (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing) * (_numberOfItems - 4));
             break;
     }
     CGFloat percent = offset / total;
-    CGFloat progress = percent * (_numberOfItems - 3);
+    CGFloat progress = percent * (_numberOfItems - 5);
     
     if ([_delegate respondsToSelector:@selector(cycleScrollViewDidScroll:progress:)]) {
         [_delegate cycleScrollViewDidScroll:self progress:progress];
@@ -299,21 +309,16 @@
     [self addTimer];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [scrollView.delegate scrollViewDidEndScrollingAnimation:scrollView];
-}
-
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
     NSInteger index = [self currentIndex];
-    if (index == 0) {
+    if (index == 1) {
         UICollectionViewScrollPosition position = [self scrollPosition];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 2 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 3 inSection:0];
         [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
-    } else if (index == _numberOfItems - 1) {
+    } else if (index == _numberOfItems - 2) {
         UICollectionViewScrollPosition position = [self scrollPosition];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
         [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
     }
     NSInteger toIndex = [self changeIndex:index];
@@ -321,6 +326,14 @@
         [_delegate cycleScrollView:self didScrollFromIndex:_fromIndex toIndex:toIndex];
     }
     _fromIndex = toIndex;
+}
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    NSInteger index = [self currentIndex];
+    UICollectionViewScrollPosition position = [self scrollPosition];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:YES];
 }
 
 #pragma mark -- Getter & Setter
@@ -335,10 +348,10 @@
     NSInteger index = 0;
     switch (_scrollDirection) {
         case ZKScrollDirectionVertical:
-            index = (_collectionView.contentOffset.y + _flowLayout.itemSize.height / 2) / _flowLayout.itemSize.height;
+            index = (_collectionView.contentOffset.y + (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing) / 2) / (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing);
             break;
         default:
-            index = (_collectionView.contentOffset.x + _flowLayout.itemSize.width / 2) / _flowLayout.itemSize.width;
+            index = (_collectionView.contentOffset.x + (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing) / 2) / (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing);
             break;
     }
     return MAX(0, index);
@@ -353,9 +366,9 @@
 {
     switch (_scrollDirection) {
         case ZKScrollDirectionVertical:
-            return CGPointMake(0.f, MAX(0.f, _collectionView.contentOffset.y - _collectionView.bounds.size.height));
+            return CGPointMake(0.f, MAX(0.f, _collectionView.contentOffset.y - (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing) * 2));
         default:
-            return CGPointMake(MAX(0.f, (_collectionView.contentOffset.x - _collectionView.bounds.size.width)), 0.f);
+            return CGPointMake(MAX(0.f, (_collectionView.contentOffset.x - (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing) * 2)), 0.f);
     }
 }
 
@@ -379,16 +392,55 @@
     [self addTimer];
 }
 
-- (void)setScrollEnabled:(BOOL)scrollEnabled
+- (void)setAllowsDragging:(BOOL)allowsDragging
 {
-    _scrollEnabled = scrollEnabled;
-    _collectionView.scrollEnabled = scrollEnabled;
+    _allowsDragging = allowsDragging;
+    _collectionView.scrollEnabled = allowsDragging;
 }
 
 - (void)setAutoScrollInterval:(CGFloat)autoScrollInterval
 {
     _autoScrollInterval = autoScrollInterval;
     [self addTimer];
+}
+
+- (void)setItemSize:(CGSize)itemSize
+{
+    _itemSizeFlag = YES;
+    _itemSize = itemSize;
+    _flowLayout.itemSize = itemSize;
+    _flowLayout.headerReferenceSize = CGSizeMake((self.bounds.size.width - itemSize.width) / 2, (self.bounds.size.height - itemSize.height) / 2);
+    _flowLayout.footerReferenceSize = CGSizeMake((self.bounds.size.width - itemSize.width) / 2, (self.bounds.size.height - itemSize.height) / 2);
+}
+
+- (void)setItemSpacing:(CGFloat)itemSpacing
+{
+    _itemSpacing = itemSpacing;
+    _flowLayout.minimumLineSpacing = itemSpacing;
+}
+
+- (void)setItemZoomFactor:(CGFloat)itemZoomFactor
+{
+    _itemZoomFactor = itemZoomFactor;
+    _flowLayout.zoomFactor = itemZoomFactor;
+}
+
+- (void)setHidesPageControl:(BOOL)hidesPageControl
+{
+    _hidesPageControl = hidesPageControl;
+    _pageControl.hidden = hidesPageControl;
+}
+
+- (void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor
+{
+    _pageIndicatorTintColor = pageIndicatorTintColor;
+    _pageControl.pageIndicatorTintColor = pageIndicatorTintColor;
+}
+
+- (void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor
+{
+    _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
+    _pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
 }
 
 @end

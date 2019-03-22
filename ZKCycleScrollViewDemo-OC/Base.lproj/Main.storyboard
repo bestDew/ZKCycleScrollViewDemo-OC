@@ -9,90 +9,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Data Source-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kOf-cg-fTi" customClass="ZKCycleScrollView">
-                                <rect key="frame" x="0.0" y="80" width="375" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="kOf-cg-fTi" secondAttribute="height" multiplier="15:8" id="Av7-xi-282"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="pageControl.pageIndicatorTintColor">
-                                        <color key="value" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="pageControl.currentPageIndicatorTintColor">
-                                        <color key="value" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="BTf-gH-8iT"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="AU3-KI-WRF"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pw3-1v-aYt" customClass="ZKCycleScrollView">
-                                <rect key="frame" x="0.0" y="340" width="375" height="65"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Pw3-1v-aYt" secondAttribute="height" multiplier="75:13" id="qjX-uP-N5l"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="autoScrollInterval">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="fyY-ZP-beQ"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="mYx-sL-BPg"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Aa-NH-yo2" customClass="ZKCycleScrollView">
-                                <rect key="frame" x="0.0" y="465" width="375" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1DB-Vw-2yx"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="scrollDirection">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scrollEnabled" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="pageControl.hidden" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="2Wi-Xv-Jjk"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="bAP-7V-GoW"/>
-                                </connections>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kOf-cg-fTi" secondAttribute="trailing" id="0U6-ZD-bcX"/>
-                            <constraint firstItem="3Aa-NH-yo2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BBZ-GK-CiV"/>
-                            <constraint firstItem="3Aa-NH-yo2" firstAttribute="top" secondItem="Pw3-1v-aYt" secondAttribute="bottom" constant="60" id="OTb-vW-X1q"/>
-                            <constraint firstItem="3Aa-NH-yo2" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ZJd-gi-ANg"/>
-                            <constraint firstItem="kOf-cg-fTi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dtF-6G-aBX"/>
-                            <constraint firstItem="Pw3-1v-aYt" firstAttribute="top" secondItem="kOf-cg-fTi" secondAttribute="bottom" constant="60" id="eKH-BN-2oq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pw3-1v-aYt" secondAttribute="trailing" id="emV-fd-0m2"/>
-                            <constraint firstItem="kOf-cg-fTi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="im8-hf-E0Y"/>
-                            <constraint firstItem="Pw3-1v-aYt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zse-WV-blL"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <connections>
-                        <outlet property="localBannerView" destination="kOf-cg-fTi" id="2I5-j0-GNk"/>
-                        <outlet property="remoteBannerView" destination="Pw3-1v-aYt" id="sao-YO-kyZ"/>
-                        <outlet property="textBannerView" destination="3Aa-NH-yo2" id="c51-bK-Uf8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="53.600000000000001" y="26.53673163418291"/>
         </scene>
     </scenes>
 </document>

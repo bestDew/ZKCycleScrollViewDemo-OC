@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XAJ-Eq-L6f">
-                        <rect key="frame" x="12" y="0.0" width="229" height="115"/>
+                        <rect key="frame" x="0.0" y="0.0" width="253" height="135"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -30,10 +30,10 @@
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="XAJ-Eq-L6f" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="86n-po-iSk"/>
-                <constraint firstAttribute="trailing" secondItem="XAJ-Eq-L6f" secondAttribute="trailing" constant="12" id="MEV-LF-Lhm"/>
-                <constraint firstItem="XAJ-Eq-L6f" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="12" id="jI1-J4-IFR"/>
-                <constraint firstAttribute="bottom" secondItem="XAJ-Eq-L6f" secondAttribute="bottom" constant="20" id="wMX-FO-6nB"/>
+                <constraint firstAttribute="trailing" secondItem="XAJ-Eq-L6f" secondAttribute="trailing" id="BaZ-gg-5Kx"/>
+                <constraint firstItem="XAJ-Eq-L6f" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ei0-Kv-Kiz"/>
+                <constraint firstAttribute="bottom" secondItem="XAJ-Eq-L6f" secondAttribute="bottom" id="XMo-ia-TNg"/>
+                <constraint firstItem="XAJ-Eq-L6f" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ddh-Gr-7Ow"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="253" height="135"/>

@@ -10,12 +10,4 @@
 
 @implementation LocalImageCell
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-{
-    if (CGRectContainsPoint(_imageView.frame, point)) {
-        return [super hitTest:point withEvent:event];
-    }
-    return nil;
-}
-
 @end

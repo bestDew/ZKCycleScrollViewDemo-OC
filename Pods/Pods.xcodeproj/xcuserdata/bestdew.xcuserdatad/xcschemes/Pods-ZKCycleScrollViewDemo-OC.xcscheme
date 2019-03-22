@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AF3E5D9D60AEB44CD9FDF830E112BDC2"
-               BuildableName = "libPods-ZKCycleScrollViewDemo-OC.a"
+               BlueprintIdentifier = "C08B38591C6CCA75E1E46E61856E0DC5"
+               BuildableName = "Pods_ZKCycleScrollViewDemo_OC.framework"
                BlueprintName = "Pods-ZKCycleScrollViewDemo-OC"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -45,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AF3E5D9D60AEB44CD9FDF830E112BDC2"
-            BuildableName = "libPods-ZKCycleScrollViewDemo-OC.a"
+            BlueprintIdentifier = "C08B38591C6CCA75E1E46E61856E0DC5"
+            BuildableName = "Pods_ZKCycleScrollViewDemo_OC.framework"
             BlueprintName = "Pods-ZKCycleScrollViewDemo-OC"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

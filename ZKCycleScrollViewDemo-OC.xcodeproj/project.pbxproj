@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5DF553282CD89325981018B /* libPods-ZKCycleScrollViewDemo-OC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F020022347E41C541A8A345 /* libPods-ZKCycleScrollViewDemo-OC.a */; };
+		F20122E40BA4285667A1BFC3 /* Pods_ZKCycleScrollViewDemo_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1A7F72E282DE045F97CCF0 /* Pods_ZKCycleScrollViewDemo_OC.framework */; };
+		FDB2AD6B224518EE00B5EF30 /* Untitled.gif in Resources */ = {isa = PBXBuildFile; fileRef = FDB2AD6A224518EE00B5EF30 /* Untitled.gif */; };
 		FDD96C9B2243762600B313A2 /* LocalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD96C992243762600B313A2 /* LocalImageCell.m */; };
 		FDD96C9C2243762600B313A2 /* LocalImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD96C9A2243762600B313A2 /* LocalImageCell.xib */; };
 		FDD96CA4224390B300B313A2 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD96CA2224390B300B313A2 /* TextCell.m */; };
 		FDD96CA5224390B300B313A2 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD96CA3224390B300B313A2 /* TextCell.xib */; };
+		FDD96CA82243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD96CA72243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m */; };
 		FDEA2B95223395AA00E0D5EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2B94223395AA00E0D5EB /* AppDelegate.m */; };
 		FDEA2B98223395AA00E0D5EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2B97223395AA00E0D5EB /* ViewController.m */; };
 		FDEA2B9B223395AA00E0D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B99223395AA00E0D5EB /* Main.storyboard */; };
@@ -23,15 +25,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3F020022347E41C541A8A345 /* libPods-ZKCycleScrollViewDemo-OC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZKCycleScrollViewDemo-OC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F1A7F72E282DE045F97CCF0 /* Pods_ZKCycleScrollViewDemo_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKCycleScrollViewDemo_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C49D4B35E329515D262A84 /* Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig"; sourceTree = "<group>"; };
 		CE119BB709AF0699519A0B65 /* Pods-ZKCycleScrollViewDemo-OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKCycleScrollViewDemo-OC.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC.release.xcconfig"; sourceTree = "<group>"; };
+		FDB2AD6A224518EE00B5EF30 /* Untitled.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Untitled.gif; sourceTree = "<group>"; };
 		FDD96C982243762600B313A2 /* LocalImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalImageCell.h; sourceTree = "<group>"; };
 		FDD96C992243762600B313A2 /* LocalImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalImageCell.m; sourceTree = "<group>"; };
 		FDD96C9A2243762600B313A2 /* LocalImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalImageCell.xib; sourceTree = "<group>"; };
 		FDD96CA1224390B300B313A2 /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
 		FDD96CA2224390B300B313A2 /* TextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		FDD96CA3224390B300B313A2 /* TextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
+		FDD96CA62243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKCycleScrollViewFlowLayout.h; sourceTree = "<group>"; };
+		FDD96CA72243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKCycleScrollViewFlowLayout.m; sourceTree = "<group>"; };
 		FDEA2B90223395AA00E0D5EB /* ZKCycleScrollViewDemo-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZKCycleScrollViewDemo-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEA2B93223395AA00E0D5EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDEA2B94223395AA00E0D5EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5DF553282CD89325981018B /* libPods-ZKCycleScrollViewDemo-OC.a in Frameworks */,
+				F20122E40BA4285667A1BFC3 /* Pods_ZKCycleScrollViewDemo_OC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,7 +68,7 @@
 		37A93ABBE931BA9FBD60D58B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3F020022347E41C541A8A345 /* libPods-ZKCycleScrollViewDemo-OC.a */,
+				7F1A7F72E282DE045F97CCF0 /* Pods_ZKCycleScrollViewDemo_OC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				FDEA2B9E223395AB00E0D5EB /* LaunchScreen.storyboard */,
 				FDEA2BA1223395AB00E0D5EB /* Info.plist */,
 				FDEA2BA2223395AB00E0D5EB /* main.m */,
+				FDB2AD6A224518EE00B5EF30 /* Untitled.gif */,
 			);
 			path = "ZKCycleScrollViewDemo-OC";
 			sourceTree = "<group>";
@@ -125,6 +131,8 @@
 			children = (
 				FDEA2BAA2233966000E0D5EB /* ZKCycleScrollView.h */,
 				FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */,
+				FDD96CA62243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.h */,
+				FDD96CA72243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m */,
 			);
 			path = ZKCycleScrollView;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 				FDEA2B8C223395AA00E0D5EB /* Sources */,
 				FDEA2B8D223395AA00E0D5EB /* Frameworks */,
 				FDEA2B8E223395AA00E0D5EB /* Resources */,
+				72B8AE7AA19722A92D4CD7FE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -188,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDEA2BA0223395AB00E0D5EB /* LaunchScreen.storyboard in Resources */,
+				FDB2AD6B224518EE00B5EF30 /* Untitled.gif in Resources */,
 				FDD96C9C2243762600B313A2 /* LocalImageCell.xib in Resources */,
 				FDD96CA5224390B300B313A2 /* TextCell.xib in Resources */,
 				FDEA2B9D223395AB00E0D5EB /* Assets.xcassets in Resources */,
@@ -220,6 +230,34 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		72B8AE7AA19722A92D4CD7FE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
+				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
+				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
+				"${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -232,6 +270,7 @@
 				FDD96CA4224390B300B313A2 /* TextCell.m in Sources */,
 				FDEA2BB52233B60300E0D5EB /* RemoteImageCell.m in Sources */,
 				FDEA2BA3223395AB00E0D5EB /* main.m in Sources */,
+				FDD96CA82243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m in Sources */,
 				FDD96C9B2243762600B313A2 /* LocalImageCell.m in Sources */,
 				FDEA2B95223395AA00E0D5EB /* AppDelegate.m in Sources */,
 			);

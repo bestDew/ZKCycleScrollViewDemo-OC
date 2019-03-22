@@ -74,6 +74,7 @@ typedef NS_ENUM(NSInteger, ZKScrollDirection) {
 
 @end
 
+IB_DESIGNABLE
 @interface ZKCycleScrollView : UIView
 
 @property (nullable, nonatomic, weak) IBOutlet id<ZKCycleScrollViewDelegate> delegate;
@@ -87,12 +88,19 @@ typedef NS_ENUM(NSInteger, ZKScrollDirection) {
 @property (nonatomic, assign) NSTimeInterval autoScrollInterval; // default 3.f. automatic scroll time interval
 #endif
 
-@property (nonatomic, assign, getter=isAutoScroll) IBInspectable BOOL autoScroll; // default YES
-@property (nonatomic, assign, getter=isScrollEnabled) IBInspectable BOOL scrollEnabled; // default YES. turn off any dragging temporarily
+@property (nonatomic, assign) IBInspectable BOOL autoScroll; // default YES
+@property (nonatomic, assign) IBInspectable BOOL allowsDragging; // default YES. turn off any dragging temporarily
+
+@property (nonatomic, assign) IBInspectable CGSize  itemSize; // default view size
+@property (nonatomic, assign) IBInspectable CGFloat itemSpacing; // default 0.f
+@property (nonatomic, assign) IBInspectable CGFloat itemZoomFactor; // default 0.f. the larger the value, the greater the zoom
+
+@property (nonatomic, assign) IBInspectable BOOL hidesPageControl; // default NO
+@property (nullable, nonatomic, strong) IBInspectable UIColor *pageIndicatorTintColor; // default gray
+@property (nullable, nonatomic, strong) IBInspectable UIColor *currentPageIndicatorTintColor; // default white
 
 @property (nonatomic, readonly, assign) NSInteger pageIndex; // current page index
 @property (nonatomic, readonly, assign) CGPoint contentOffset;  // current content offset
-@property (nonatomic, readonly, strong) UIPageControl *pageControl;
 
 - (void)registerCellClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
 - (void)registerCellNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier;

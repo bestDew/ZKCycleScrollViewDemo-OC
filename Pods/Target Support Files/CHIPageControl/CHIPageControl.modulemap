@@ -1,0 +1,6 @@
+framework module CHIPageControl {
+  umbrella header "CHIPageControl-umbrella.h"
+
+  export *
+  module * { export * }
+}
