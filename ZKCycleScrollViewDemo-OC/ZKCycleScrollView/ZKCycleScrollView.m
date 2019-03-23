@@ -108,7 +108,10 @@
     _pageControl.currentPageIndicatorTintColor = _currentPageIndicatorTintColor;
     [self addSubview:_pageControl];
     
-    dispatch_async(dispatch_get_main_queue(), ^{ [self configuration]; });
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self configuration];
+        if (_loadCompletion) _loadCompletion();
+    });
 }
 
 - (void)layoutSubviews
@@ -157,6 +160,7 @@
             [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
         } completion:^(BOOL finished) {
             [self configuration];
+            if (_loadCompletion) _loadCompletion();
         }];
     }];
 }
