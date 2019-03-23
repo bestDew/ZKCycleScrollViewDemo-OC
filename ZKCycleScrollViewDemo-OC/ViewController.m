@@ -81,7 +81,7 @@ static NSString *kTextCellId = @"TextCell";
 
 /**
  如果内置的 pageControl 不能满足需求，你可以隐藏默认的 pageControl，然后通过 -addSubview: 的方式添加你自定义的 pageControl，并在相应的代理方法中将 pageControl 进行联动，这种方式应该更显灵活些。。。
- 这里推荐一个很好很强大的自定义的 PageControl 轮子：https://github.com/ChiliLabs/CHIPageControl
+ 推荐一个很好很强大的自定义的 PageControl 轮子：https://github.com/ChiliLabs/CHIPageControl
  本 Demo 中用的就是这个，但遗憾的是貌似目前只有 Swift 版本。。。
  */
 
@@ -227,7 +227,9 @@ static NSString *kTextCellId = @"TextCell";
 
 - (void)cycleScrollViewDidScroll:(ZKCycleScrollView *)cycleScrollView progress:(CGFloat)progress
 {
-    if (cycleScrollView == _cycleScrollView2) {
+    if (cycleScrollView == _cycleScrollView1) {
+        NSLog(@"content offset-x: %f", cycleScrollView.contentOffset.x);
+    } else if (cycleScrollView == _cycleScrollView2) {
         _pageControlJaloro.progress = progress;
     } else if (cycleScrollView == _cycleScrollView3) {
         _pageControlPuya.progress = progress;
