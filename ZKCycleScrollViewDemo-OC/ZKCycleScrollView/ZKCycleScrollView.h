@@ -102,7 +102,7 @@ IB_DESIGNABLE
 @property (nonatomic, readonly, assign) NSInteger pageIndex; // current page index
 @property (nonatomic, readonly, assign) CGPoint contentOffset;  // current content offset
 
-@property (nullable, nonatomic, copy) dispatch_block_t loadCompletion; // a callback to the completion of data loading
+@property (nullable, nonatomic, copy) dispatch_block_t loadCompletion; // load completed callback
 
 - (void)registerCellClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
 - (void)registerCellNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier;
