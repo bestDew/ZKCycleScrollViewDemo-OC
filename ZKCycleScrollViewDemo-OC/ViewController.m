@@ -121,7 +121,7 @@ static NSString *kTextCellId = @"TextCell";
         _cycleScrollView3.dataSource = self;
         _cycleScrollView3.hidesPageControl = YES;
         _cycleScrollView3.itemSpacing = 12.f;
-        _cycleScrollView3.itemSize = CGSizeMake(SCREEN_WIDTH - 80.f, _cycleScrollView3.bounds.size.height);
+        _cycleScrollView3.itemSize = CGSizeMake(SCREEN_WIDTH - 50.f, _cycleScrollView3.bounds.size.height);
         [_cycleScrollView3 registerCellNib:[UINib nibWithNibName:@"LocalImageCell" bundle:nil] forCellWithReuseIdentifier:kLocalCellId];
         _cycleScrollView3;
     })];
