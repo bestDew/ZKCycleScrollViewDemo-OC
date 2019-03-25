@@ -52,6 +52,7 @@
 @property (nonatomic, assign) NSInteger fromIndex;
 @property (nonatomic, assign) NSInteger numberOfItems;
 @property (nonatomic, assign) BOOL itemSizeFlag;
+@property (nonatomic, assign) NSInteger indexOffset;
 
 @end
 
@@ -332,12 +333,27 @@
     _fromIndex = toIndex;
 }
 
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    if ([self changeIndex:[self currentIndex]] != _fromIndex) return;
+    
+    CGFloat sum = velocity.x + velocity.y;
+    if (sum > 0) {
+        _indexOffset = 1;
+    } else if (sum < 0) {
+        _indexOffset = -1;
+    } else {
+        _indexOffset = 0;
+    }
+}
+
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
-    NSInteger index = [self currentIndex];
+    NSInteger index = [self currentIndex] + _indexOffset;
     UICollectionViewScrollPosition position = [self scrollPosition];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:YES];
+    _indexOffset = 0;
 }
 
 #pragma mark -- Getter & Setter
@@ -358,7 +374,7 @@
             index = (_collectionView.contentOffset.x + (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing) / 2) / (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing);
             break;
     }
-    return MAX(0, index);
+    return MIN(_numberOfItems - 1, MAX(0, index));
 }
 
 - (NSInteger)pageIndex

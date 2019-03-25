@@ -36,7 +36,7 @@
             break;
         }
     }
-    
+
     return attributes;
 }
 
