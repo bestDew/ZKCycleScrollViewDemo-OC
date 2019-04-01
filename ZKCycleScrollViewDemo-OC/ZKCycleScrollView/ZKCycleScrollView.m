@@ -335,7 +335,7 @@
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    if ([self changeIndex:[self currentIndex]] != _fromIndex) return;
+    if ([self pageIndex] != _fromIndex) return;
     
     CGFloat sum = velocity.x + velocity.y;
     if (sum > 0) {
