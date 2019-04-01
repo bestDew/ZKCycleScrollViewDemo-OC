@@ -91,7 +91,7 @@ IB_DESIGNABLE
 @property (nonatomic, assign) IBInspectable BOOL autoScroll; // default YES
 @property (nonatomic, assign) IBInspectable BOOL allowsDragging; // default YES. turn off any dragging temporarily
 
-@property (nonatomic, assign) IBInspectable CGSize  itemSize; // default view size
+@property (nonatomic, assign) IBInspectable CGSize  itemSize; // default the view size
 @property (nonatomic, assign) IBInspectable CGFloat itemSpacing; // default 0.f
 @property (nonatomic, assign) IBInspectable CGFloat itemZoomFactor; // default 0.f. the larger the value, the greater the zoom
 
