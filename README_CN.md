@@ -2,7 +2,7 @@
 
 一款简单实用的轮播图控件，支持 Objective-C 和 Swift.
 
-## 截图
+## 效果图
 
 ![效果图](https://github.com/bestDew/ZKCycleScrollViewDemo-OC/blob/master/ZKCycleScrollViewDemo-OC/Untitled.gif)
 
