@@ -53,7 +53,8 @@
 
 ## 链接
 
-[Swift 版本](https://github.com/bestDew/ZKCycleScrollViewDemo)
+-   [English document](./README.md)
+-   [Swift 版本](https://github.com/bestDew/ZKCycleScrollViewDemo)
 
 ## 感谢
 
