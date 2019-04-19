@@ -43,7 +43,7 @@
    return cell;
 }
 
-#pragma mark -- ZKCycleScrollView Dlegate
+#pragma mark -- ZKCycleScrollView Delegate
 - (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     // TODO...
 }
