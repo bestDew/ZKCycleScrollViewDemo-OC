@@ -54,3 +54,7 @@
 ## 链接
 
 [Swift 版本](https://github.com/bestDew/ZKCycleScrollViewDemo)
+
+## 感谢
+
+如果对你有帮助, 赏颗星吧😘.
