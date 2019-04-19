@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger, ZKScrollDirection) {
 
 @end
 
-IB_DESIGNABLE
+IBInspectable
 @interface  ZKCycleScrollView : UIView
 
 @property (nullable, nonatomic, weak) IBOutlet id<ZKCycleScrollViewDelegate> delegate;
