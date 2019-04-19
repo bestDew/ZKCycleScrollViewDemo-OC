@@ -23,7 +23,8 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-
+    [super viewDidLoad];
+    
     ZKCycleScrollView *cycleScrollView = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 0.f, 375.f, 65.f)];
     cycleScrollView.delegate = self;
     cycleScrollView.dataSource = self;
