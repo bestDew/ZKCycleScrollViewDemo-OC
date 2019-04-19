@@ -1,6 +1,6 @@
 # ZKCycleScrollView
 
-[中文版](./README_CN.md)
+[中文文档](./README_CN.md)
 
 A simple and useful automatic infinite scroll view, support for Objective-C and Swift.
 
@@ -56,3 +56,7 @@ A simple and useful automatic infinite scroll view, support for Objective-C and 
 ## Link
 
 [Swift version](https://github.com/bestDew/ZKCycleScrollViewDemo)
+
+## Thanks
+
+If possible, please give me a star😘.
