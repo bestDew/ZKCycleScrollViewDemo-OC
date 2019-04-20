@@ -9,7 +9,7 @@ A simple and useful automatic infinite scroll view, more elegant implementation 
 ## Features
 
 -   Horizontal and vertical scrolling
--   Cell and pageControl customization
+-   Cell and PageControl customization
 -   Interface Builder
 
 ## Usage
