@@ -1,6 +1,6 @@
 # ZKCycleScrollView
 
-一款简单实用的轮播图控件，支持 Objective-C 和 Swift。
+一款简单实用的轮播图控件，更优雅的实现，更友好的API。支持 Objective-C 和 Swift。
 
 ## 效果图
 
