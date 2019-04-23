@@ -104,6 +104,7 @@
     [self addSubview:_collectionView];
     
     _pageControl = [[UIPageControl alloc] init];
+    _pageControl.enabled = NO;
     _pageControl.hidesForSinglePage = YES;
     _pageControl.pageIndicatorTintColor = _pageIndicatorTintColor;
     _pageControl.currentPageIndicatorTintColor = _currentPageIndicatorTintColor;
