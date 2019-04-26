@@ -44,27 +44,61 @@
 
 @implementation ZKCycleScrollViewFlowLayout
 
+- (instancetype)init
+{
+    if (self = [super init]) {
+        
+        _zoomScale = 1.f;
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        
+        _zoomScale = 1.f;
+    }
+    return self;
+}
+
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {
     NSArray *attributes = [[NSArray alloc] initWithArray:[super layoutAttributesForElementsInRect:rect] copyItems:YES];
     
     switch (self.scrollDirection) {
         case UICollectionViewScrollDirectionVertical: {
-            CGFloat centerY = self.collectionView.contentOffset.y + self.collectionView.bounds.size.height / 2;
-            
+            CGFloat offset = CGRectGetMidY(self.collectionView.bounds);
+            CGFloat distanceForScale = self.itemSize.height + self.minimumLineSpacing;
             for (UICollectionViewLayoutAttributes *attr in attributes) {
-                CGFloat distance = ABS(attr.center.y - centerY);
-                CGFloat scale = 1 / (1 + distance * _zoomFactor);
+                CGFloat scale = 0.f;
+                CGFloat distance = ABS(offset - attr.center.y);
+                if (distance >= distanceForScale) {
+                    scale = _zoomScale;
+                } else if (distance == 0.f) {
+                    scale = 1.f;
+                    attr.zIndex = 1;
+                } else {
+                    scale = _zoomScale + (distanceForScale - distance) * (1.f - _zoomScale) / distanceForScale;
+                }
                 attr.transform = CGAffineTransformMakeScale(scale, scale);
             }
             break;
         }
         default: {
-            CGFloat centerX = self.collectionView.contentOffset.x + self.collectionView.bounds.size.width / 2;
-            
+            CGFloat offset = CGRectGetMidX(self.collectionView.bounds);
+            CGFloat distanceForScale = self.itemSize.width + self.minimumLineSpacing;
             for (UICollectionViewLayoutAttributes *attr in attributes) {
-                CGFloat distance = ABS(attr.center.x - centerX);
-                CGFloat scale = 1 / (1 + distance * _zoomFactor);
+                CGFloat scale = 0.f;
+                CGFloat distance = ABS(offset - attr.center.x);
+                if (distance >= distanceForScale) {
+                    scale = _zoomScale;
+                } else if (distance == 0.f) {
+                    scale = 1.f;
+                    attr.zIndex = 1;
+                } else {
+                    scale = _zoomScale + (distanceForScale - distance) * (1.f - _zoomScale) / distanceForScale;
+                }
                 attr.transform = CGAffineTransformMakeScale(scale, scale);
             }
             break;

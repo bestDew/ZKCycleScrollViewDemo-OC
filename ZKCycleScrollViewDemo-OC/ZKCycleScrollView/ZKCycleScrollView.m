@@ -80,6 +80,7 @@
 - (void)initialization
 {
     _autoScroll = YES;
+    _itemZoomScale = 1.f;
     _allowsDragging = YES;
     _autoScrollInterval = 3.f;
     _pageIndicatorTintColor = [UIColor grayColor];
@@ -440,10 +441,10 @@
     _flowLayout.minimumLineSpacing = itemSpacing;
 }
 
-- (void)setItemZoomFactor:(CGFloat)itemZoomFactor
+- (void)setItemZoomScale:(CGFloat)itemZoomScale
 {
-    _itemZoomFactor = itemZoomFactor;
-    _flowLayout.zoomFactor = itemZoomFactor;
+    _itemZoomScale = itemZoomScale;
+    _flowLayout.zoomScale = itemZoomScale;
 }
 
 - (void)setHidesPageControl:(BOOL)hidesPageControl
