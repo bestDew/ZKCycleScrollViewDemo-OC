@@ -138,7 +138,7 @@ static NSString *kTextCellId = @"TextCell";
     })];
 }
 
-// 实现这种效果的关键是：itemZoomFactor，默认是 0.f，没有缩放效果，这个值越大缩放效果越明显，0.001已经很大了。。。
+// 实现这种效果的关键是：itemZoomScale，范围是：0.f ~ 1.f，默认是 1.f，没有缩放效果
 - (void)addCycleScrollView4
 {
     [_scrollView addSubview:({
