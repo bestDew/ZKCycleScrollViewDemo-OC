@@ -213,13 +213,14 @@
 
 - (void)configuration
 {
-    [self addTimer];
-    [self updatePageControl];
     if (_numberOfItems < 2) return;
     
     UICollectionViewScrollPosition position = [self scrollPosition];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+    
+    [self addTimer];
+    [self updatePageControl];
 }
 
 - (void)addTimer

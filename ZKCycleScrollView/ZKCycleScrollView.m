@@ -159,12 +159,11 @@
 {
     [self removeTimer];
     [UIView performWithoutAnimation:^{
-        [_collectionView performBatchUpdates:^{
-            [_collectionView reloadSections:[NSIndexSet indexSetWithIndex:0]];
-        } completion:^(BOOL finished) {
-            [self configuration];
-            if (_loadCompletion) _loadCompletion();
-        }];
+        [_collectionView reloadData];
+    }];
+    [_collectionView performBatchUpdates:nil completion:^(BOOL finished) {
+        [self configuration];
+        if (_loadCompletion) _loadCompletion();
     }];
 }
 
@@ -174,16 +173,13 @@
     
     NSInteger index = [self currentIndex];
     UICollectionViewScrollPosition position = [self scrollPosition];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
-    [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
-    
     if (index == 1) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_numberOfItems - 3 inSection:0];
-        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+        index = _numberOfItems - 3;
     } else if (index == _numberOfItems - 2) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
-        [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+        index = 2;
     }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
 }
 
 #pragma mark -- Private Methods
@@ -217,13 +213,14 @@
 
 - (void)configuration
 {
-    [self addTimer];
-    [self updatePageControl];
     if (_numberOfItems < 2) return;
     
     UICollectionViewScrollPosition position = [self scrollPosition];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
     [_collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:position animated:NO];
+    
+    [self addTimer];
+    [self updatePageControl];
 }
 
 - (void)addTimer
