@@ -213,6 +213,9 @@
 
 - (void)configuration
 {
+    _fromIndex = 0;
+    _indexOffset = 0;
+    
     if (_numberOfItems < 2) return;
     
     UICollectionViewScrollPosition position = [self scrollPosition];
