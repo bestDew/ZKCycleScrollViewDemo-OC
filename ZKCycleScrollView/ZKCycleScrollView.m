@@ -427,7 +427,7 @@
     _collectionView.scrollEnabled = allowsDragging;
 }
 
-- (void)setAutoScrollInterval:(CGFloat)autoScrollInterval
+- (void)setAutoScrollInterval:(NSTimeInterval)autoScrollInterval
 {
     _autoScrollInterval = autoScrollInterval;
     [self addTimer];
