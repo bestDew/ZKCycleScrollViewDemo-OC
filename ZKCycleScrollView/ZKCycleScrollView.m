@@ -89,8 +89,6 @@
     _flowLayout = [[ZKCycleScrollViewFlowLayout alloc] init];
     _flowLayout.minimumLineSpacing = 0.f;
     _flowLayout.minimumInteritemSpacing = 0.f;
-    _flowLayout.headerReferenceSize = CGSizeZero;
-    _flowLayout.footerReferenceSize = CGSizeZero;
     _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:_flowLayout];
@@ -121,7 +119,15 @@
 {
     [super layoutSubviews];
     
-    _flowLayout.itemSize = _itemSizeFlag ? _itemSize : self.bounds.size;
+    if (_itemSizeFlag) {
+        _flowLayout.itemSize = _itemSize;
+        _flowLayout.headerReferenceSize = CGSizeMake((self.bounds.size.width - _itemSize.width) / 2, (self.bounds.size.height - _itemSize.height) / 2);
+        _flowLayout.footerReferenceSize = CGSizeMake((self.bounds.size.width - _itemSize.width) / 2, (self.bounds.size.height - _itemSize.height) / 2);
+    } else {
+        _flowLayout.itemSize = self.bounds.size;
+        _flowLayout.headerReferenceSize = CGSizeZero;
+        _flowLayout.footerReferenceSize = CGSizeZero;
+    }
     _collectionView.frame = self.bounds;
     _pageControl.frame = CGRectMake(0.f, self.bounds.size.height - 15.f, self.bounds.size.width, 15.f);
 }
@@ -361,13 +367,14 @@
 #pragma mark -- Getter & Setter
 - (NSInteger)currentIndex
 {
-    if (_numberOfItems <= 0 ||
+    NSInteger index = 0;
+    
+    if (_numberOfItems < 2 ||
         self.bounds.size.width <= 0.f ||
         self.bounds.size.height <= 0.f) {
-        return 0;
+        return index;
     }
     
-    NSInteger index = 0;
     switch (_scrollDirection) {
         case ZKScrollDirectionVertical:
             index = (_collectionView.contentOffset.y + (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing) / 2) / (_flowLayout.itemSize.height + _flowLayout.minimumLineSpacing);
@@ -376,7 +383,7 @@
             index = (_collectionView.contentOffset.x + (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing) / 2) / (_flowLayout.itemSize.width + _flowLayout.minimumLineSpacing);
             break;
     }
-    return MIN(_numberOfItems - 1, MAX(0, index));
+    return MIN(_numberOfItems - 2, MAX(1, index));
 }
 
 - (NSInteger)pageIndex
