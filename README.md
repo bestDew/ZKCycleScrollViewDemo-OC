@@ -39,13 +39,13 @@ A simple and useful automatic infinite scroll view, more elegant implementation 
 
 - (__kindof ZKCycleScrollViewCell *)cycleScrollView:(ZKCycleScrollView *)cycleScrollView cellForItemAtIndex:(NSInteger)index {
    CustomCell *cell = [cycleScrollView dequeueReusableCellWithReuseIdentifier:@"cellReuseId" forIndex:index];
-   // TODO...
+   // TODO:
    return cell;
 }
 
 #pragma mark -- ZKCycleScrollView Delegate
 - (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    // TODO...
+    // TODO:
 }
 
 @end
