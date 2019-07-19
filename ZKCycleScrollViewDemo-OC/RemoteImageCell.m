@@ -17,8 +17,7 @@
 
 @implementation RemoteImageCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         
         _imageView = [[UIImageView alloc] init];
@@ -28,15 +27,13 @@
     return self;
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
     
     _imageView.frame = self.contentView.bounds;
 }
 
-- (void)setImageURL:(NSURL *)imageURL
-{
+- (void)setImageURL:(NSURL *)imageURL {
     _imageURL = imageURL;
     [_imageView yy_setImageWithURL:imageURL options:YYWebImageOptionSetImageWithFadeAnimation];
 }

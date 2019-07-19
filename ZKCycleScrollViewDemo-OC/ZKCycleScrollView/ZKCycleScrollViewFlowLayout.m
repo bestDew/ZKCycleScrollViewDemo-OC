@@ -44,8 +44,7 @@
 
 @implementation ZKCycleScrollViewFlowLayout
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         
         _zoomScale = 1.f;
@@ -53,8 +52,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     if (self = [super initWithCoder:aDecoder]) {
         
         _zoomScale = 1.f;
@@ -62,8 +60,7 @@
     return self;
 }
 
-- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
-{
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     NSArray *attributes = [[NSArray alloc] initWithArray:[super layoutAttributesForElementsInRect:rect] copyItems:YES];
     
     switch (self.scrollDirection) {
@@ -108,8 +105,7 @@
     return attributes;
 }
 
-- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
-{
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return true;
 }
 

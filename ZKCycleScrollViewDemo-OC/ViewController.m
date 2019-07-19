@@ -68,8 +68,7 @@ static NSString *kTextCellId = @"TextCell";
 }
 
 // 默认就是这种效果
-- (void)addCycleScrollView1
-{
+- (void)addCycleScrollView1 {
     [_scrollView addSubview:({
         _cycleScrollView1 = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, 0.f, SCREEN_WIDTH, FIT_WIDTH(65.f))];
         _cycleScrollView1.delegate = self;
@@ -86,8 +85,7 @@ static NSString *kTextCellId = @"TextCell";
  */
 
 // 实现这种效果的关键是：itemSize.width = cycleScrollView.bounds.size.width - itemSpacing * 2
-- (void)addCycleScrollView2
-{
+- (void)addCycleScrollView2 {
     [_scrollView addSubview:({
         _cycleScrollView2 = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, CGRectGetMaxY(_cycleScrollView1.frame) + 20.f, SCREEN_WIDTH, FIT_WIDTH(150.f))];
         _cycleScrollView2.delegate = self;
@@ -113,8 +111,7 @@ static NSString *kTextCellId = @"TextCell";
 }
 
 // 前后两个 cell 暴露出来的部分之和 + itemSpacing * 2 = cycleScrollView.bounds.size.width
-- (void)addCycleScrollView3
-{
+- (void)addCycleScrollView3 {
     [_scrollView addSubview:({
         _cycleScrollView3 = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, CGRectGetMaxY(_cycleScrollView2.frame) + 20.f, SCREEN_WIDTH, FIT_WIDTH(150.f))];
         _cycleScrollView3.delegate = self;
@@ -139,8 +136,7 @@ static NSString *kTextCellId = @"TextCell";
 }
 
 // 实现这种效果的关键是：itemZoomScale，范围是：0.f ~ 1.f，默认是 1.f，没有缩放效果
-- (void)addCycleScrollView4
-{
+- (void)addCycleScrollView4 {
     [_scrollView addSubview:({
         _cycleScrollView4 = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, CGRectGetMaxY(_cycleScrollView3.frame) + 20.f, SCREEN_WIDTH, FIT_WIDTH(150.f))];
         _cycleScrollView4.delegate = self;
@@ -164,8 +160,7 @@ static NSString *kTextCellId = @"TextCell";
 }
 
 // 纯文本轮播...
-- (void)addCycleScrollView5
-{
+- (void)addCycleScrollView5 {
     [_scrollView addSubview:({
         _cycleScrollView5 = [[ZKCycleScrollView alloc] initWithFrame:CGRectMake(0.f, CGRectGetMaxY(_cycleScrollView4.frame) + 20.f, SCREEN_WIDTH, 30.f)];
         _cycleScrollView5.delegate = self;
@@ -178,8 +173,7 @@ static NSString *kTextCellId = @"TextCell";
     })];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     // 这里最好调用一下这个方法，防止界面跳转时，轮播图卡在一半。。。
@@ -191,8 +185,7 @@ static NSString *kTextCellId = @"TextCell";
 }
 
 #pragma mark -- ZKCycleScrollView DataSource
-- (NSInteger)numberOfItemsInCycleScrollView:(ZKCycleScrollView *)cycleScrollView
-{
+- (NSInteger)numberOfItemsInCycleScrollView:(ZKCycleScrollView *)cycleScrollView {
     if (cycleScrollView == _cycleScrollView1) {
         return _remotePathGroup.count;
     } else if (cycleScrollView == _cycleScrollView5) {
@@ -202,8 +195,7 @@ static NSString *kTextCellId = @"TextCell";
     }
 }
 
-- (__kindof ZKCycleScrollViewCell *)cycleScrollView:(ZKCycleScrollView *)cycleScrollView cellForItemAtIndex:(NSInteger)index
-{
+- (__kindof ZKCycleScrollViewCell *)cycleScrollView:(ZKCycleScrollView *)cycleScrollView cellForItemAtIndex:(NSInteger)index {
     if (cycleScrollView == _cycleScrollView1) {
         RemoteImageCell *cell = [cycleScrollView dequeueReusableCellWithReuseIdentifier:kRemoteCellId forIndex:index];
         cell.imageURL = [NSURL URLWithString:_remotePathGroup[index]];
@@ -220,13 +212,11 @@ static NSString *kTextCellId = @"TextCell";
 }
 
 #pragma mark -- ZKCycleScrollView Delegate
-- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
-{
+- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     NSLog(@"selected index: %zd", index);
 }
 
-- (void)cycleScrollViewDidScroll:(ZKCycleScrollView *)cycleScrollView progress:(CGFloat)progress
-{
+- (void)cycleScrollViewDidScroll:(ZKCycleScrollView *)cycleScrollView progress:(CGFloat)progress {
     if (cycleScrollView == _cycleScrollView1) {
         NSLog(@"content offset-x: %f", cycleScrollView.contentOffset.x);
     } else if (cycleScrollView == _cycleScrollView2) {
@@ -238,8 +228,7 @@ static NSString *kTextCellId = @"TextCell";
     }
 }
 
-- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex
-{
+- (void)cycleScrollView:(ZKCycleScrollView *)cycleScrollView didScrollFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
     if (cycleScrollView != _cycleScrollView2) return;
     NSLog(@"from %zd to %zd", fromIndex, toIndex);
 }
