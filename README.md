@@ -1,6 +1,6 @@
 # ZKCycleScrollView
 
-ZKCycleScrollView是的一个功能强大的轮播视图。有 [Objective-C](https://github.com/bestDew/ZKCycleScrollViewDemo-OC) 和 [Swift](https://github.com/bestDew/ZKCycleScrollViewDemo)两个版本。
+ZKCycleScrollView是的一个功能强大的轮播视图。有 [Objective-C](https://github.com/bestDew/ZKCycleScrollViewDemo-OC) 和 [Swift](https://github.com/bestDew/ZKCycleScrollViewDemo) 两个版本。
 
 ## 演示效果图
 
@@ -10,7 +10,7 @@ ZKCycleScrollView是的一个功能强大的轮播视图。有 [Objective-C](htt
 
 -   高度可定制化
 -   支持 Xib 方式创建
--   支持 CocoaPods
+-   支持 CocoaPods 方式导入
 
 ## 代码示例
 
