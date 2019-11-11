@@ -1,8 +1,8 @@
 //
-//  LocalImageCell.h
+//  UIColor+Random.h
 //  ZKCycleScrollViewDemo-OC
 //
-//  Created by bestdew on 2019/3/21.
+//  Created by bestdew on 2019/11/11.
 //  Copyright © 2019 bestdew. All rights reserved.
 //
 
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LocalImageCell : UICollectionViewCell
+@interface UIColor (Random)
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
++ (UIColor *)randomColor;
 
 @end
 

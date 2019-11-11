@@ -1,11 +1,13 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CHIPageControl" "${PODS_CONFIGURATION_BUILD_DIR}/YYCache" "${PODS_CONFIGURATION_BUILD_DIR}/YYImage" "${PODS_CONFIGURATION_BUILD_DIR}/YYWebImage"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CHIPageControl" "${PODS_CONFIGURATION_BUILD_DIR}/ZKCycleScrollView"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/CHIPageControl/CHIPageControl.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/ZKCycleScrollView/ZKCycleScrollView.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/CHIPageControl/CHIPageControl.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/YYCache/YYCache.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/YYImage/YYImage.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/YYWebImage/YYWebImage.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "CHIPageControl" -framework "YYCache" -framework "YYImage" -framework "YYWebImage"
-OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/CHIPageControl/CHIPageControl.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/ZKCycleScrollView/ZKCycleScrollView.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/CHIPageControl" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/ZKCycleScrollView"
+OTHER_LDFLAGS = $(inherited) -framework "CHIPageControl" -framework "ZKCycleScrollView"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
 PODS_ROOT = ${SRCROOT}/Pods
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

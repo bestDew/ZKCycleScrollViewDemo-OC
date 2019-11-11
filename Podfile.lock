@@ -1,46 +1,36 @@
 PODS:
-  - CHIPageControl (0.1.7):
-    - CHIPageControl/Aji (= 0.1.7)
-    - CHIPageControl/Aleppo (= 0.1.7)
-    - CHIPageControl/Chimayo (= 0.1.7)
-    - CHIPageControl/Fresno (= 0.1.7)
-    - CHIPageControl/Jalapeno (= 0.1.7)
-    - CHIPageControl/Jaloro (= 0.1.7)
-    - CHIPageControl/Paprika (= 0.1.7)
-    - CHIPageControl/Puya (= 0.1.7)
-  - CHIPageControl/Aji (0.1.7)
-  - CHIPageControl/Aleppo (0.1.7)
-  - CHIPageControl/Chimayo (0.1.7)
-  - CHIPageControl/Fresno (0.1.7)
-  - CHIPageControl/Jalapeno (0.1.7)
-  - CHIPageControl/Jaloro (0.1.7)
-  - CHIPageControl/Paprika (0.1.7)
-  - CHIPageControl/Puya (0.1.7)
-  - YYCache (1.0.4)
-  - YYImage (1.0.4):
-    - YYImage/Core (= 1.0.4)
-  - YYImage/Core (1.0.4)
-  - YYWebImage (1.0.5):
-    - YYCache
-    - YYImage
+  - CHIPageControl (0.2):
+    - CHIPageControl/Aji (= 0.2)
+    - CHIPageControl/Aleppo (= 0.2)
+    - CHIPageControl/Chimayo (= 0.2)
+    - CHIPageControl/Fresno (= 0.2)
+    - CHIPageControl/Jalapeno (= 0.2)
+    - CHIPageControl/Jaloro (= 0.2)
+    - CHIPageControl/Paprika (= 0.2)
+    - CHIPageControl/Puya (= 0.2)
+  - CHIPageControl/Aji (0.2)
+  - CHIPageControl/Aleppo (0.2)
+  - CHIPageControl/Chimayo (0.2)
+  - CHIPageControl/Fresno (0.2)
+  - CHIPageControl/Jalapeno (0.2)
+  - CHIPageControl/Jaloro (0.2)
+  - CHIPageControl/Paprika (0.2)
+  - CHIPageControl/Puya (0.2)
+  - ZKCycleScrollView (2.0)
 
 DEPENDENCIES:
   - CHIPageControl
-  - YYWebImage
+  - ZKCycleScrollView
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - CHIPageControl
-    - YYCache
-    - YYImage
-    - YYWebImage
+    - ZKCycleScrollView
 
 SPEC CHECKSUMS:
-  CHIPageControl: bbe1ddd0c688c02ec65b7f7e7d34551a3d16f37c
-  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
-  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
-  YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
+  CHIPageControl: a787bf7205c9b7e7fbfc412be36c5e8636b68f86
+  ZKCycleScrollView: e509fd98ecb0a3d18c33d6837728c00f28e2cdce
 
-PODFILE CHECKSUM: bf4ec1d3794759f2a53639330c328d155296e649
+PODFILE CHECKSUM: 6ba3b4f2456a3f35b2e8dc916d4b993c6da45486
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

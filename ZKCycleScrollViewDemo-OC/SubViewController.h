@@ -1,8 +1,8 @@
 //
-//  RemoteImageCell.h
+//  SubViewController.h
 //  ZKCycleScrollViewDemo-OC
 //
-//  Created by bestdew on 2019/3/9.
+//  Created by bestdew on 2019/11/11.
 //  Copyright © 2019 bestdew. All rights reserved.
 //
 
@@ -10,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RemoteImageCell : UICollectionViewCell
-
-@property (nullable, nonatomic, strong) NSURL *imageURL;
+@interface SubViewController : UIViewController
 
 @end
 

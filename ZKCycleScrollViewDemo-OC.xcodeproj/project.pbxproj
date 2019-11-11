@@ -3,54 +3,51 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F20122E40BA4285667A1BFC3 /* Pods_ZKCycleScrollViewDemo_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F1A7F72E282DE045F97CCF0 /* Pods_ZKCycleScrollViewDemo_OC.framework */; };
+		7A3B857123788A88005305EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A3B857023788A88005305EB /* Main.storyboard */; };
+		7A3B857523788D78005305EB /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3B857323788D78005305EB /* ImageCell.m */; };
+		7A3B857623788D78005305EB /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3B857423788D78005305EB /* ImageCell.xib */; };
+		7A3B857923789415005305EB /* SubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3B857823789415005305EB /* SubViewController.m */; };
+		7A3B857C23789FCF005305EB /* UIColor+Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A3B857B23789FCF005305EB /* UIColor+Random.m */; };
+		98CF42BBF1B618042C11CD6F /* Pods_ZKCycleScrollViewDemo_OC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8EFA2444EF60AE1740CF251 /* Pods_ZKCycleScrollViewDemo_OC.framework */; };
 		FDB2AD6B224518EE00B5EF30 /* Untitled.gif in Resources */ = {isa = PBXBuildFile; fileRef = FDB2AD6A224518EE00B5EF30 /* Untitled.gif */; };
-		FDD96C9B2243762600B313A2 /* LocalImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD96C992243762600B313A2 /* LocalImageCell.m */; };
-		FDD96C9C2243762600B313A2 /* LocalImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD96C9A2243762600B313A2 /* LocalImageCell.xib */; };
 		FDD96CA4224390B300B313A2 /* TextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD96CA2224390B300B313A2 /* TextCell.m */; };
 		FDD96CA5224390B300B313A2 /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD96CA3224390B300B313A2 /* TextCell.xib */; };
-		FDD96CA82243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD96CA72243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m */; };
 		FDEA2B95223395AA00E0D5EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2B94223395AA00E0D5EB /* AppDelegate.m */; };
 		FDEA2B98223395AA00E0D5EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2B97223395AA00E0D5EB /* ViewController.m */; };
-		FDEA2B9B223395AA00E0D5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B99223395AA00E0D5EB /* Main.storyboard */; };
 		FDEA2B9D223395AB00E0D5EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B9C223395AB00E0D5EB /* Assets.xcassets */; };
 		FDEA2BA0223395AB00E0D5EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDEA2B9E223395AB00E0D5EB /* LaunchScreen.storyboard */; };
 		FDEA2BA3223395AB00E0D5EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BA2223395AB00E0D5EB /* main.m */; };
-		FDEA2BAC2233966000E0D5EB /* ZKCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */; };
-		FDEA2BB52233B60300E0D5EB /* RemoteImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDEA2BB42233B60300E0D5EB /* RemoteImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F1A7F72E282DE045F97CCF0 /* Pods_ZKCycleScrollViewDemo_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKCycleScrollViewDemo_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A3B857023788A88005305EB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		7A3B857223788D78005305EB /* ImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		7A3B857323788D78005305EB /* ImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
+		7A3B857423788D78005305EB /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		7A3B857723789415005305EB /* SubViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubViewController.h; sourceTree = "<group>"; };
+		7A3B857823789415005305EB /* SubViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubViewController.m; sourceTree = "<group>"; };
+		7A3B857A23789FCF005305EB /* UIColor+Random.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+Random.h"; sourceTree = "<group>"; };
+		7A3B857B23789FCF005305EB /* UIColor+Random.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Random.m"; sourceTree = "<group>"; };
 		A0C49D4B35E329515D262A84 /* Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC.debug.xcconfig"; sourceTree = "<group>"; };
+		A8EFA2444EF60AE1740CF251 /* Pods_ZKCycleScrollViewDemo_OC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZKCycleScrollViewDemo_OC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE119BB709AF0699519A0B65 /* Pods-ZKCycleScrollViewDemo-OC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZKCycleScrollViewDemo-OC.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC.release.xcconfig"; sourceTree = "<group>"; };
 		FDB2AD6A224518EE00B5EF30 /* Untitled.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Untitled.gif; sourceTree = "<group>"; };
-		FDD96C982243762600B313A2 /* LocalImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalImageCell.h; sourceTree = "<group>"; };
-		FDD96C992243762600B313A2 /* LocalImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalImageCell.m; sourceTree = "<group>"; };
-		FDD96C9A2243762600B313A2 /* LocalImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalImageCell.xib; sourceTree = "<group>"; };
 		FDD96CA1224390B300B313A2 /* TextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextCell.h; sourceTree = "<group>"; };
 		FDD96CA2224390B300B313A2 /* TextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextCell.m; sourceTree = "<group>"; };
 		FDD96CA3224390B300B313A2 /* TextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
-		FDD96CA62243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKCycleScrollViewFlowLayout.h; sourceTree = "<group>"; };
-		FDD96CA72243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKCycleScrollViewFlowLayout.m; sourceTree = "<group>"; };
 		FDEA2B90223395AA00E0D5EB /* ZKCycleScrollViewDemo-OC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ZKCycleScrollViewDemo-OC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEA2B93223395AA00E0D5EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FDEA2B94223395AA00E0D5EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FDEA2B96223395AA00E0D5EB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FDEA2B97223395AA00E0D5EB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FDEA2B9A223395AA00E0D5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FDEA2B9C223395AB00E0D5EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FDEA2B9F223395AB00E0D5EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDEA2BA1223395AB00E0D5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDEA2BA2223395AB00E0D5EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FDEA2BAA2233966000E0D5EB /* ZKCycleScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZKCycleScrollView.h; sourceTree = "<group>"; };
-		FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZKCycleScrollView.m; sourceTree = "<group>"; };
-		FDEA2BB32233B60300E0D5EB /* RemoteImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteImageCell.h; sourceTree = "<group>"; };
-		FDEA2BB42233B60300E0D5EB /* RemoteImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoteImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F20122E40BA4285667A1BFC3 /* Pods_ZKCycleScrollViewDemo_OC.framework in Frameworks */,
+				98CF42BBF1B618042C11CD6F /* Pods_ZKCycleScrollViewDemo_OC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +65,7 @@
 		37A93ABBE931BA9FBD60D58B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7F1A7F72E282DE045F97CCF0 /* Pods_ZKCycleScrollViewDemo_OC.framework */,
+				A8EFA2444EF60AE1740CF251 /* Pods_ZKCycleScrollViewDemo_OC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,16 +104,17 @@
 				FDEA2B94223395AA00E0D5EB /* AppDelegate.m */,
 				FDEA2B96223395AA00E0D5EB /* ViewController.h */,
 				FDEA2B97223395AA00E0D5EB /* ViewController.m */,
-				FDD96C982243762600B313A2 /* LocalImageCell.h */,
-				FDD96C992243762600B313A2 /* LocalImageCell.m */,
-				FDD96C9A2243762600B313A2 /* LocalImageCell.xib */,
-				FDEA2BB32233B60300E0D5EB /* RemoteImageCell.h */,
-				FDEA2BB42233B60300E0D5EB /* RemoteImageCell.m */,
+				7A3B857723789415005305EB /* SubViewController.h */,
+				7A3B857823789415005305EB /* SubViewController.m */,
+				7A3B857223788D78005305EB /* ImageCell.h */,
+				7A3B857323788D78005305EB /* ImageCell.m */,
+				7A3B857423788D78005305EB /* ImageCell.xib */,
 				FDD96CA1224390B300B313A2 /* TextCell.h */,
 				FDD96CA2224390B300B313A2 /* TextCell.m */,
 				FDD96CA3224390B300B313A2 /* TextCell.xib */,
-				FDEA2BA92233963500E0D5EB /* ZKCycleScrollView */,
-				FDEA2B99223395AA00E0D5EB /* Main.storyboard */,
+				7A3B857A23789FCF005305EB /* UIColor+Random.h */,
+				7A3B857B23789FCF005305EB /* UIColor+Random.m */,
+				7A3B857023788A88005305EB /* Main.storyboard */,
 				FDEA2B9C223395AB00E0D5EB /* Assets.xcassets */,
 				FDEA2B9E223395AB00E0D5EB /* LaunchScreen.storyboard */,
 				FDEA2BA1223395AB00E0D5EB /* Info.plist */,
@@ -124,17 +122,6 @@
 				FDB2AD6A224518EE00B5EF30 /* Untitled.gif */,
 			);
 			path = "ZKCycleScrollViewDemo-OC";
-			sourceTree = "<group>";
-		};
-		FDEA2BA92233963500E0D5EB /* ZKCycleScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				FDEA2BAA2233966000E0D5EB /* ZKCycleScrollView.h */,
-				FDEA2BAB2233966000E0D5EB /* ZKCycleScrollView.m */,
-				FDD96CA62243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.h */,
-				FDD96CA72243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m */,
-			);
-			path = ZKCycleScrollView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +135,7 @@
 				FDEA2B8C223395AA00E0D5EB /* Sources */,
 				FDEA2B8D223395AA00E0D5EB /* Frameworks */,
 				FDEA2B8E223395AA00E0D5EB /* Resources */,
-				72B8AE7AA19722A92D4CD7FE /* [CP] Embed Pods Frameworks */,
+				3F2D902E6765F2CCB47FA40A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -165,7 +152,7 @@
 		FDEA2B88223395AA00E0D5EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = bestdew;
 				TargetAttributes = {
 					FDEA2B8F223395AA00E0D5EB = {
@@ -198,10 +185,10 @@
 			files = (
 				FDEA2BA0223395AB00E0D5EB /* LaunchScreen.storyboard in Resources */,
 				FDB2AD6B224518EE00B5EF30 /* Untitled.gif in Resources */,
-				FDD96C9C2243762600B313A2 /* LocalImageCell.xib in Resources */,
+				7A3B857623788D78005305EB /* ImageCell.xib in Resources */,
+				7A3B857123788A88005305EB /* Main.storyboard in Resources */,
 				FDD96CA5224390B300B313A2 /* TextCell.xib in Resources */,
 				FDEA2B9D223395AB00E0D5EB /* Assets.xcassets in Resources */,
-				FDEA2B9B223395AA00E0D5EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,32 +217,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		72B8AE7AA19722A92D4CD7FE /* [CP] Embed Pods Frameworks */ = {
+		3F2D902E6765F2CCB47FA40A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CHIPageControl/CHIPageControl.framework",
-				"${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework",
-				"${BUILT_PRODUCTS_DIR}/YYImage/YYImage.framework",
-				"${BUILT_PRODUCTS_DIR}/YYWebImage/YYWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CHIPageControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYCache.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ZKCycleScrollViewDemo-OC/Pods-ZKCycleScrollViewDemo-OC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -266,12 +242,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDEA2B98223395AA00E0D5EB /* ViewController.m in Sources */,
-				FDEA2BAC2233966000E0D5EB /* ZKCycleScrollView.m in Sources */,
 				FDD96CA4224390B300B313A2 /* TextCell.m in Sources */,
-				FDEA2BB52233B60300E0D5EB /* RemoteImageCell.m in Sources */,
 				FDEA2BA3223395AB00E0D5EB /* main.m in Sources */,
-				FDD96CA82243A01C00B313A2 /* ZKCycleScrollViewFlowLayout.m in Sources */,
-				FDD96C9B2243762600B313A2 /* LocalImageCell.m in Sources */,
+				7A3B857C23789FCF005305EB /* UIColor+Random.m in Sources */,
+				7A3B857923789415005305EB /* SubViewController.m in Sources */,
+				7A3B857523788D78005305EB /* ImageCell.m in Sources */,
 				FDEA2B95223395AA00E0D5EB /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,14 +254,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FDEA2B99223395AA00E0D5EB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FDEA2B9A223395AA00E0D5EB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FDEA2B9E223395AB00E0D5EB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

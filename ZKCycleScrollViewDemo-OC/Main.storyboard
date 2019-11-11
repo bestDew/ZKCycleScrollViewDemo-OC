@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="iJ1-Kt-Ten">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Ciz-Wt-FOp">
+            <objects>
+                <navigationController id="iJ1-Kt-Ten" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oov-KF-ni4">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="tuR-dU-EQe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1m3-ZO-9eF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-967" y="27"/>
+        </scene>
+        <!--Data Source-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ckA-KC-lFu"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xi7-Ec-RCd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K4v-88-r8E" customClass="ZKCycleScrollView">
+                                <rect key="frame" x="0.0" y="79" width="375" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="K4v-88-r8E" secondAttribute="height" multiplier="375:150" id="m7e-Av-x0G"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="itemSpacing">
+                                        <real key="value" value="-10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="itemZoomScale">
+                                        <real key="value" value="0.84999999999999998"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="pageIndicatorTintColor">
+                                        <color key="value" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="currentPageIndicatorTintColor">
+                                        <color key="value" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="4He-Gh-x0P"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="EZi-WL-N29"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7VW-e7-K8D" customClass="ZKCycleScrollView">
+                                <rect key="frame" x="16" y="577" width="343" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="kVk-uc-Ql4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="scrollDirection">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hidesPageControl" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="Fww-Ab-mpk"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="oNT-fi-inT"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZF-nI-ebs">
+                                <rect key="frame" x="137.5" y="259" width="100" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="TkZ-mp-St8"/>
+                                    <constraint firstAttribute="width" constant="100" id="ryj-3H-xjb"/>
+                                </constraints>
+                                <state key="normal" title="更新布局"/>
+                                <connections>
+                                    <action selector="updateLayout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KgZ-Lm-R3X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xi7-Ec-RCd" firstAttribute="top" secondItem="7VW-e7-K8D" secondAttribute="bottom" constant="60" id="6ej-0Y-dcZ"/>
+                            <constraint firstItem="7VW-e7-K8D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Osh-45-hE8"/>
+                            <constraint firstAttribute="trailing" secondItem="K4v-88-r8E" secondAttribute="trailing" id="PdK-1f-JcK"/>
+                            <constraint firstItem="K4v-88-r8E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Zyh-hP-jlq"/>
+                            <constraint firstItem="lZF-nI-ebs" firstAttribute="top" secondItem="K4v-88-r8E" secondAttribute="bottom" constant="30" id="aN8-eD-9EY"/>
+                            <constraint firstItem="K4v-88-r8E" firstAttribute="top" secondItem="ckA-KC-lFu" secondAttribute="bottom" constant="15" id="cAq-Rb-uRc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7VW-e7-K8D" secondAttribute="trailing" id="m7k-zE-H3E"/>
+                            <constraint firstItem="lZF-nI-ebs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mEy-xL-Gst"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jcg-65-hOO"/>
+                    <connections>
+                        <outlet property="imageCycleScrollView" destination="K4v-88-r8E" id="e26-R3-Fcc"/>
+                        <outlet property="textCycleScrollView" destination="7VW-e7-K8D" id="LjG-bv-SMB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53.600000000000001" y="26.53673163418291"/>
+        </scene>
+    </scenes>
+</document>
