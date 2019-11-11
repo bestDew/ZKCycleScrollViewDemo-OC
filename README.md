@@ -1,10 +1,6 @@
 # ZKCycleScrollView
 
-ZKCycleScrollView是的一个功能强大的轮播视图。有 [Objective-C](https://github.com/bestDew/ZKCycleScrollViewDemo-OC) 和 [Swift](https://github.com/bestDew/ZKCycleScrollViewDemo) 两个版本。
-
-## 演示效果图
-
-![image](https://github.com/bestDew/ZKCycleScrollViewDemo-OC/blob/master/ZKCycleScrollViewDemo-OC/Untitled.gif)
+ZKCycleScrollView是的一个功能强大的轮播视图。支持 [Objective-C](https://github.com/bestDew/ZKCycleScrollViewDemo-OC) 和 [Swift](https://github.com/bestDew/ZKCycleScrollViewDemo)。
 
 ## 特性
 
@@ -12,7 +8,11 @@ ZKCycleScrollView是的一个功能强大的轮播视图。有 [Objective-C](htt
 -   支持 Xib 方式创建
 -   支持 CocoaPods 方式导入
 
-## 代码示例
+## 演示效果图
+
+![image](https://github.com/bestDew/ZKCycleScrollViewDemo-OC/blob/master/ZKCycleScrollViewDemo-OC/Untitled.gif)
+
+## 用法示例
 
 ```objc
 
@@ -51,3 +51,33 @@ ZKCycleScrollView是的一个功能强大的轮播视图。有 [Objective-C](htt
 @end
 
 ```
+
+## 更新记录
+
+### Version 2.0（2019/11/11）：
+
+1.支持 CococaPods 导入：
+  ```objc
+  pod 'ZKCycleScrollView'
+  ```
+2.支持取消无限轮播：
+  ```objc
+  // 通过Xib 方式创建的，可直接在属性面板中直接设置 infiniteLoop 为 off
+  // 通过纯代码方式创建的，需要使用下面这种初始化方法并设置 infiniteLoop 参数为 NO
+  - (instancetype)initWithFrame:(CGRect)frame shouldInfiniteLoop:(BOOL)infiniteLoop NS_DESIGNATED_INITIALIZER;
+  ```
+3.支持设置默认显示页：
+  ```objc
+  // 设置默认从第三页开始显示
+  __weak typeof(self) weakSelf = self;
+    _cycleScrollView.loadCompletion = ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.cycleScrollView scrollToIndex:3 animated:NO];
+    };
+  ```
+ 4.修复界面跳转时 cell 自动偏移的 bug；
+ 5.修复在加载时就回调代理方法的 bug；
+ 6.移除 -adjustWhenViewWillAppear 方法；
+ 7.新增 -beginUpdates、-endUpdates、-scrollToIndex:animated:、-cellForItemAtIndex: 等方法，具体使用见Demo；
+ 5.修复在加载时就回调代理方法的 bug；
+ 6.优化性能。
