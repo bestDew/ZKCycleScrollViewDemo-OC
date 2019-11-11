@@ -78,7 +78,11 @@ ZKCycleScrollView是的一个功能强大的轮播视图。支持 [Objective-C](
     };
   ```
  4.修复界面跳转时 cell 自动偏移的 bug；<br/>
+ 
  5.修复在加载时就回调代理方法的 bug；<br/>
+ 
  6.移除 -adjustWhenViewWillAppear 方法；<br/>
+ 
  7.新增 -beginUpdates、-endUpdates、-scrollToIndex:animated:、-cellForItemAtIndex: 等方法，具体使用见Demo；<br/>
+ 
  8.优化性能。
