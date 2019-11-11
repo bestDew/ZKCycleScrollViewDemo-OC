@@ -2,6 +2,8 @@
 
 ZKCycleScrollView是的一个功能强大的轮播视图。支持 [Objective-C](https://github.com/bestDew/ZKCycleScrollViewDemo-OC) 和 [Swift](https://github.com/bestDew/ZKCycleScrollViewDemo)。
 
+### 提示：下载完 Demo 后，需执行下 ```pod install```才能运行。
+
 ## 特性
 
 -   高度可定制化
