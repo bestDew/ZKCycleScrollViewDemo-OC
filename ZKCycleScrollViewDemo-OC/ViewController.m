@@ -53,7 +53,7 @@ static NSString * const kColorCellId = @"ColorCell";
     __weak typeof(self) weakSelf = self;
     _imageCycleScrollView.loadCompletion = ^{
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        [strongSelf.imageCycleScrollView scrollToIndex:3 animated:NO];
+        [strongSelf.imageCycleScrollView scrollToItemAtIndex:3 animated:NO];
     };
     
     // 3.纯代码方式创建有限轮播
@@ -133,7 +133,7 @@ static NSString * const kColorCellId = @"ColorCell";
         SubViewController *vc = [[SubViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     } else if (cycleScrollView == _colorCycleScrollView) {
-        [cycleScrollView scrollToIndex:cycleScrollView.pageIndex + 1 animated:YES];
+        [cycleScrollView scrollToItemAtIndex:cycleScrollView.pageIndex + 1 animated:YES];
     } else {
         // TODO:
     }
