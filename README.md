@@ -58,7 +58,7 @@ ZKCycleScrollView是的一个功能强大的轮播视图。支持 [Objective-C](
 
 ### V2.0.1（2019/11/11）：
 
-1.支持 CococaPods 导入：
+1.支持 CocoaPods 导入：
   ```objc
   pod 'ZKCycleScrollView'
   ```
